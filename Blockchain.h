@@ -3,7 +3,7 @@
 #include "Block.h"
 using namespace std;
 
-class Blockchain(){
+class Blockchain{
 public:
 	Blockchain();
 	void AddBlock(Block bNew);
