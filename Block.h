@@ -16,6 +16,6 @@ private:
 	string _bHash;//区块哈希值
 	time_t _cTime;//区块生成时间
 
-	string _CalculateHash() const;//计算区块哈希值
+	string _CalculateBlockHash() const;//计算区块哈希值
 };
 

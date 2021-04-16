@@ -6,7 +6,7 @@
 //______________________________________________________________
 
 #include <iostream>
-#include "pbft.h"
+#include "Pbft.h"
 using namespace std;
 
 

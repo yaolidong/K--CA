@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.h
+cstdint
+-
+iostream
+-
+string
+-
+
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
+cstdint
+-
+vector
+-
+Block.h
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.h
+
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/main.cpp
+Blockchain.h
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
+
