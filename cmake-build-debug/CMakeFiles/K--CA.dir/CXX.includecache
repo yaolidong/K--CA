@@ -14,15 +14,13 @@ iostream
 string
 -
 
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp
+Blockchain.h
 /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
-cstdint
--
+
+/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
 vector
 -
 Block.h
 /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.h
-
-/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/main.cpp
-Blockchain.h
-/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
 

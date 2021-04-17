@@ -11,13 +11,10 @@ int main()
 {
 	Blockchain bChain = Blockchain();
 
-    int i = 1;
+    uint32_t i = 1;
 	while(1)
     {
-	    string blockData = "Block " +to_string(i) + " Data";
-        cout<<"Mining block "<<i<<"..."<<endl;
-        bChain.AddBlock(Block(i,blockData));
-        i++;
+        bChain.AddBlock(Block(i++,"blockData"));
     }
 
 

@@ -15,8 +15,7 @@ using namespace std;
 Block::Block(uint32_t bIndexIn,const string & bDataIn):_bIndex(bIndexIn),_bData(bDataIn){
 	_bNonce = -1;
 	_cTime = time(nullptr);
-	char * localTime =ctime(&_cTime) ;
-	cout<<"The Block "<<bIndexIn<<" Create Time is "<<localTime<<endl;
+
 }
 
 string Block::GetHash()
@@ -24,7 +23,14 @@ string Block::GetHash()
 	return _bHash;
 }
 
+uint32_t Block::GetBIndex() {
+    return _bIndex;
+}
 
+time_t Block::GetCTime()
+{
+    return _cTime;
+}
 
 void Block::MineBlock(uint32_t mDifficulty)
 {
