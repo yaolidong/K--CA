@@ -10,17 +10,17 @@ public:
 	Block(uint32_t bIndexIn, const string & bDataIn);
 	string GetHash();
 
-	uint32_t GetBIndex();
-    time_t GetCTime();
+	uint32_t GetBIndex() const;
 	void MineBlock(uint32_t mDifficulty);
 
 private:
+    string merkle_root;//merkle_root
 	int64_t _bNonce;//区块随机数
 	string _bData;//区块数据
 	string _bHash;//区块哈希值
 	time_t _cTime;//区块生成时间
 
-	string _CalculateBlockHash() const;//计算区块哈希值
+	string CalculateBlockHash() const;//计算区块哈希值
     uint32_t _bIndex ;
 };
 

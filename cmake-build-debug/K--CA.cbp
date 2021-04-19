@@ -94,7 +94,52 @@
 		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h">
 			<Option target="K--CA"/>
 		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp">
+			<Option target="K--CA"/>
+		</Unit>
 		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/Cahce.cpp">
 			<Option target="K--CA"/>
 		</Unit>
 		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/main.cpp">

@@ -5,19 +5,20 @@
 #ifndef K_CA_TRANSLATION_H
 #define K_CA_TRANSLATION_H
 #include <cstdint>
-#include <string>
-
+#include "Node.h"
 class Translation
 {
 public:
     Translation();
-    string GetTHash();
+    uint64_t GetTSize() const;
+    std::string ModTHash();
+    std::string _tHash;//交易哈希值
 private:
-    uint32_t _tIndex;//交易编号
-    string _tHash;//交易哈希值
-    time_t _tTime;//交易时间
+    uint32_t _tIndex{};//交易编号
 
-    string _CalculateTransHash() const;//计算交易哈希
+    time_t _tTime;//交易时间
+    uint64_t _tSize = 100 * 1024;
+    std::string CalculateTransHash() const;//计算交易哈希
 };
 
 #endif //K_CA_TRANSLATION_H

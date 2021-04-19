@@ -18,7 +18,7 @@ void Blockchain::AddBlock(Block bNew)
     time_t now = time(nullptr);
 
     cout<<"Mining Block "<<bNew.GetBIndex()<<" ..."<<endl;
-	bNew.bPrevHash = _GetLastBlock().GetHash();
+	bNew.bPrevHash = GetLastBlock().GetHash();
 	bNew.MineBlock(_mDifficulty);
 	char * localTime = ctime(& now);
     cout<<"The Block "<<bNew.GetBIndex()<<" Create Time is "<< localTime <<endl;
@@ -29,7 +29,7 @@ void Blockchain::AddBlock(Block bNew)
 
 }
 
-Block Blockchain::_GetLastBlock() const
+Block Blockchain::GetLastBlock() const
 {
 	return _bChain.back();//返回向量中的最后一个元素
 }

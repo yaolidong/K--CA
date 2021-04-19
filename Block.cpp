@@ -23,14 +23,10 @@ string Block::GetHash()
 	return _bHash;
 }
 
-uint32_t Block::GetBIndex() {
+uint32_t Block::GetBIndex() const{
     return _bIndex;
 }
 
-time_t Block::GetCTime()
-{
-    return _cTime;
-}
 
 void Block::MineBlock(uint32_t mDifficulty)
 {
@@ -46,7 +42,7 @@ void Block::MineBlock(uint32_t mDifficulty)
 	do
 	{
 		_bNonce++;
-		_bHash = _CalculateBlockHash();
+		_bHash = CalculateBlockHash();
 	}
 	while
 		(_bHash.substr(0,mDifficulty) !=str);//
@@ -55,7 +51,7 @@ void Block::MineBlock(uint32_t mDifficulty)
 
 }
 
-inline string Block::_CalculateBlockHash() const
+inline string Block::CalculateBlockHash() const
 {
 	stringstream ss;
 	ss<< _bIndex<<_cTime<<_bData<<_bNonce<<bPrevHash;

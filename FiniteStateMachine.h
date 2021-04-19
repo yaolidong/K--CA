@@ -9,7 +9,7 @@ class ViewState
 		Requested,
 		Prepared,
 		committed,
-		replyed,
+		Replyed,
 	}state_;
 
 	unsigned long accepeted_prepares = 0;

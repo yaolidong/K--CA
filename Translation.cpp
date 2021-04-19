@@ -1,0 +1,27 @@
+//
+// Created by 姚黎东 on 2021/4/19.
+//
+#include "Translation.h"
+#include "sha256.h"
+#include <sstream>
+#include <ctime>
+
+
+std::string Translation::CalculateTransHash() const {
+    std::stringstream st;
+    st << _tIndex << _tTime;
+    return sha256(st.str());
+
+}
+
+Translation::Translation() {
+    _tIndex ++;
+    _tTime = time(nullptr);
+}
+uint64_t Translation::GetTSize() const{
+    return _tSize;
+}
+
+std::string Translation::ModTHash() {
+    _tHash = CalculateTransHash();
+}

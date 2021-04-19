@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <map>
-#include <iostream>
+
 
 #include "FiniteStateMachine.h"
 #include "Network.h"
@@ -15,7 +15,7 @@
 class Client : public NetworkNode {
 public:
     void OnRecMsg(network_address_t src,Message msg) override;
-    void SendRequest(network_address_t dst, std::std::string o);
+    void SendRequest(network_address_t dst, std::string o);
 };
 
 class Node : public NetworkNode{

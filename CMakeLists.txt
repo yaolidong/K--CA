@@ -13,8 +13,8 @@ add_executable(K--CA
         sha256.cpp
         sha256.h
         Message.h
-   #[[     Message.cpp
+        Message.cpp
         FiniteStateMachine.h
         Pbft.cpp
         Pbft.h
-        Node.h Node.cpp Network.h Network.cpp FiniteStateMachine.cpp Translation.h]])
+        Node.h Node.cpp Network.h Network.cpp FiniteStateMachine.cpp Translation.h Translation.cpp Cache.h cmake-build-debug/Cahce.cpp Sealer.h Sealer.cpp)

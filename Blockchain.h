@@ -11,7 +11,7 @@ private:
 	uint32_t _mDifficulty;
 	vector<Block> _bChain;
 
-	Block _GetLastBlock() const;
+	Block GetLastBlock() const;
 
 };
 
