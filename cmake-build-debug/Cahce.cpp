@@ -3,15 +3,21 @@
 //
 #include "Cache.h"
 
-void Cache::AddTranslation(Translation tr) {
+
+Cache::Cache(){
+    _num = 0;
+    _store = 0;
+}
+
+void Cache::AddTranslation(Translation & tr) {
     _num ++;
     std::cout<<"The Cache has "<<_num <<" translations ."<<std::endl;
     _store += tr.GetTSize();
-    tr.ModTHash();
     _trans_cache.emplace_back(tr);
 }
 
-uint64_t Cache::ShowCacheStore() const{
+void Cache::ShowCacheStore() const{
+    std::cout<<"The Cache has "<<_num <<" translations ."<<std::endl;
     std::cout<<"The Cache :" ;
     if(_store/1024/1024 >=1)
     {
@@ -20,5 +26,8 @@ uint64_t Cache::ShowCacheStore() const{
     else {
         std::cout << _store/1024 << " K " << std::endl;
     }
+}
 
+std::vector <Translation> Cache::GetTransCache() {
+    return  _trans_cache;
 }

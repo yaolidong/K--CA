@@ -6,15 +6,18 @@
 #define K_CA_CACHE_H
 #include <vector>
 #include "Translation.h"
-#include "sha256.h"
+
 
 class Cache{
 public:
-    uint32_t _num = 0;//缓存池中的交易数量
-    void AddTranslation (Translation tr);
+    Cache();
+    void AddTranslation (Translation & tr);
+    void ShowCacheStore() const;
+    std::vector<Translation> GetTransCache();
 private:
+    uint32_t _num;//缓存池中的交易数量
     std::vector<Translation> _trans_cache;
-    uint64_t _store = 0;//交易所占空间
-    uint64_t  ShowCacheStore() const;
+    uint64_t _store;//交易所占空间
+
 };
 #endif //K_CA_CACHE_H

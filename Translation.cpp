@@ -9,19 +9,24 @@
 
 std::string Translation::CalculateTransHash() const {
     std::stringstream st;
-    st << _tIndex << _tTime;
+    st << _tIndex << _tTime;//TODO:参数增加交易发送方和接收方数据
     return sha256(st.str());
 
 }
 
 Translation::Translation() {
-    _tIndex ++;
+    _tIndex++;
     _tTime = time(nullptr);
+    _tSize = 100 * 1024;
+    _tHash = CalculateTransHash();
 }
 uint64_t Translation::GetTSize() const{
     return _tSize;
 }
 
-std::string Translation::ModTHash() {
-    _tHash = CalculateTransHash();
+std::string Translation::GetTHash() const {
+    return _tHash;
 }
+
+
+

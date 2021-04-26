@@ -10,10 +10,10 @@
 class Sealer{
 public:
     Sealer(Cache & ca);
-    bool IsCacheEmpty() const;
-    std::string CaculateMerkRoot() const;
+    static bool IsCacheEmpty(Cache & ca) ;
+    std::string CalculateMerkRoot(Cache & ca);
+    std::string GetMerkleRoot() const;
 private:
     std::string merkle_root;
-
 };
 #endif //K_CA_SEALER_H

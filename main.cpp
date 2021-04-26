@@ -10,10 +10,10 @@
 int main()
 {
 	Blockchain bChain = Blockchain();
-
     uint32_t i = 1;
 	while(1)
     {
+	    
         bChain.AddBlock(Block(i++,"blockData"));
     }
 

@@ -54,7 +54,12 @@ void Block::MineBlock(uint32_t mDifficulty)
 inline string Block::CalculateBlockHash() const
 {
 	stringstream ss;
-	ss<< _bIndex<<_cTime<<_bData<<_bNonce<<bPrevHash;
+	ss<< _bIndex << _cTime << _bData << _bNonce << bPrevHash << merkle_root;
 	return sha256(ss.str());
 
+}
+
+string Block::GetMerkRoot(Sealer & sl) {
+    merkle_root = sl.GetMerkleRoot();
+    return merkle_root;
 }
