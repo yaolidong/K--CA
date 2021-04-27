@@ -3,6 +3,7 @@
 //
 #include <sstream>
 #include <string>
+#include <iostream>
 #include "Sealer.h"
 #include "sha256.h"
 
@@ -11,24 +12,29 @@ Sealer::Sealer() {
     merkle_root = "";
 }
 bool Sealer::IsCacheEmpty(Cache & ca) {
-    return ca.GetTransCache().empty();
+    return ca.GetTransQueue().empty();
 }
 
-std::string Sealer::CalculateMerkRoot(Cache & ca)  {
+void Sealer::CalculateMerkRoot(Cache & ca)  {
     int counter = 0;
+    std::string str;
+    std::queue<Translation>  ref_que = ca.GetTransQueue();
     while (counter < 400 && !IsCacheEmpty(ca))
     {
             std::stringstream ss;
-            std::string str = ca.GetTransCache().front().GetTHash();
-            ca.GetTransCache().erase(ca.GetTransCache().begin());
+//            std::string str = ca.GetTransCache().begin()->GetTHash();
+//            ca.GetTransCache().erase(ca.GetTransCache().begin()+counter);
+            str = ref_que.front().GetTHash();
+            ref_que.pop();
+            std::cout<<ref_que.front().GetTHash()<<std::endl;
+//            std::cout<<"The queue has "<<ref_que.size()<<std::endl;
             ss << merkle_root << str;
             merkle_root = sha256(ss.str());
             counter++;
     }
-    return merkle_root;
 }
 
-std::string Sealer::GetMerkleRoot() const {
+std::string Sealer::GetMerkleRoot() {
     return merkle_root;
 }
 

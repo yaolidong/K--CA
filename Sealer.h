@@ -11,8 +11,8 @@ class Sealer{
 public:
     Sealer();
     static bool IsCacheEmpty(Cache & ca) ;
-    std::string CalculateMerkRoot(Cache & ca);
-    std::string GetMerkleRoot() const;
+    void CalculateMerkRoot(Cache & ca);
+    std::string GetMerkleRoot();
 private:
     std::string merkle_root;
 };

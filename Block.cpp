@@ -60,7 +60,4 @@ inline string Block::CalculateBlockHash() const
 
 }
 
-string Block::GetMerkRoot(Sealer & sl) {
-    merkle_root = sl.GetMerkleRoot();
-    return merkle_root;
-}
+

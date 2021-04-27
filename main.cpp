@@ -23,12 +23,15 @@ int main()
         {
 	        tra[trans_sender] = Translation(to_string(trans_sender), to_string(trans_receiver));
 	        ca.AddTranslation(tra[trans_sender]);
+            ca.ShowCacheStore();
 	        trans_receiver++;
 	        trans_sender ++;
         }
-        ca.ShowCacheStore();
+        std::cout << "计算Merkleroot"<<std::endl;
         sl.CalculateMerkRoot(ca);
-        bChain.AddBlock(Block(i++,"blockData",sl.GetMerkleRoot()));
+	    std::cout << "添加区块"<<std::endl;
+        Block bk = Block(i++,"blockData",sl.GetMerkleRoot());
+        bChain.AddBlock(bk);
     }
 
 

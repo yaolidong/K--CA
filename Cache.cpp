@@ -2,6 +2,7 @@
 // Created by 姚黎东 on 2021/4/19.
 //
 #include "Cache.h"
+#include <iostream>
 
 
 Cache::Cache(){
@@ -11,12 +12,13 @@ Cache::Cache(){
 
 void Cache::AddTranslation(Translation & tr) {
     _num ++;
-    std::cout<<"The Cache has "<<_num <<" translations ."<<std::endl;
+//    std::cout<<"The Cache has "<<_num <<" translations ."<<std::endl;
     _store += tr.GetTSize();
-    _trans_cache.emplace_back(tr);
+    _trans_que.push(tr);
+//    _trans_cache.emplace_back(tr);
 }
 
-void Cache::ShowCacheStore() const{
+void Cache::ShowCacheStore(){
     std::cout<<"The Cache has "<<_num <<" translations ."<<std::endl;
     std::cout<<"The Cache :" ;
     if(_store/1024/1024 >=1)
@@ -28,6 +30,10 @@ void Cache::ShowCacheStore() const{
     }
 }
 
-std::vector <Translation> Cache::GetTransCache() {
-    return  _trans_cache;
+//std::vector <Translation> Cache::GetTransCache() {
+//    return  _trans_cache;
+//}
+
+std::queue<Translation> Cache::GetTransQueue() {
+    return _trans_que;
 }

@@ -5,16 +5,17 @@
 #ifndef K_CA_TRANSLATION_H
 #define K_CA_TRANSLATION_H
 #include <cstdint>
-#include "Node.h"
+#include <string>
+
 class Translation
 {
 public:
     Translation();
     Translation(std::string sen, std::string rec);
-    uint64_t GetTSize() const;
-    std::string GetTHash() const;
+    uint64_t GetTSize();
+    std::string GetTHash();
 private:
-    static uint32_t _tIndex ;//交易编号
+    uint32_t _tIndex ;//交易编号
     std::string sender;
     std::string reciever;
     time_t _tTime;//交易时间

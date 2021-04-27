@@ -22,11 +22,11 @@ Translation::Translation() {
     _tSize = 100 * 1024;
     _tHash = CalculateTransHash();
 }
-uint64_t Translation::GetTSize() const{
+uint64_t Translation::GetTSize() {
     return _tSize;
 }
 
-std::string Translation::GetTHash() const {
+std::string Translation::GetTHash()  {
     return _tHash;
 }
 
