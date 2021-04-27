@@ -12,7 +12,8 @@
 #include <ctime>
 using namespace std;
 
-Block::Block(uint32_t bIndexIn,const string & bDataIn):_bIndex(bIndexIn),_bData(bDataIn){
+Block::Block(uint32_t bIndexIn,const string & bDataIn, string merkroot):_bIndex(bIndexIn),_bData(bDataIn){
+    merkle_root = merkroot;
 	_bNonce = -1;
 	_cTime = time(nullptr);
 

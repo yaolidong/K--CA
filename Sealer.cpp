@@ -7,7 +7,7 @@
 #include "sha256.h"
 
 
-Sealer::Sealer(Cache & ca) {
+Sealer::Sealer() {
     merkle_root = "";
 }
 bool Sealer::IsCacheEmpty(Cache & ca) {

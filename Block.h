@@ -8,7 +8,7 @@ using namespace std;
 class Block{
 public:
 	string bPrevHash;//上一个区块的哈希值
-	Block(uint32_t bIndexIn, const string & bDataIn);
+	Block(uint32_t bIndexIn, const string & bDataIn,string merkroot);
 	string GetHash();
     string GetMerkRoot(Sealer & sl);
 	uint32_t GetBIndex() const;

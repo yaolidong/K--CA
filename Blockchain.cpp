@@ -9,7 +9,7 @@
 
 Blockchain::Blockchain()
 {
-	_bChain.emplace_back(Block(0,"Genesis Block"));//emplace_back 和push_back作用相同，但更节省资源
+	_bChain.emplace_back(Block(0,"Genesis Block"),"");//emplace_back 和push_back作用相同，但更节省资源
 	_mDifficulty = 5;//TODO:这里设置为固定难度，KCA实际要求随交易量变化，
 }
 

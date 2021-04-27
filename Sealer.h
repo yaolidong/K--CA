@@ -9,7 +9,7 @@
 
 class Sealer{
 public:
-    Sealer(Cache & ca);
+    Sealer();
     static bool IsCacheEmpty(Cache & ca) ;
     std::string CalculateMerkRoot(Cache & ca);
     std::string GetMerkleRoot() const;

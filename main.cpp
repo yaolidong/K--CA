@@ -6,15 +6,29 @@
 //______________________________________________________________
 
 #include "Blockchain.h"
+#define Max 400
 
 int main()
 {
+    Cache ca = Cache();
+    Sealer sl = Sealer();
 	Blockchain bChain = Blockchain();
     uint32_t i = 1;
+    uint32_t trans_sender = 0;
+    uint32_t trans_receiver = 1;
 	while(1)
     {
-	    
-        bChain.AddBlock(Block(i++,"blockData"));
+	    Translation tra[Max];
+	    while( trans_sender < 400)
+        {
+	        tra[trans_sender] = Translation(to_string(trans_sender), to_string(trans_receiver));
+	        ca.AddTranslation(tra[trans_sender]);
+	        trans_receiver++;
+	        trans_sender ++;
+        }
+        ca.ShowCacheStore();
+        sl.CalculateMerkRoot(ca);
+        bChain.AddBlock(Block(i++,"blockData",sl.GetMerkleRoot()));
     }
 
 

@@ -10,10 +10,13 @@ class Translation
 {
 public:
     Translation();
+    Translation(std::string sen, std::string rec);
     uint64_t GetTSize() const;
     std::string GetTHash() const;
 private:
     static uint32_t _tIndex ;//交易编号
+    std::string sender;
+    std::string reciever;
     time_t _tTime;//交易时间
     uint64_t _tSize;
     std::string _tHash;//交易哈希值
