@@ -5,16 +5,18 @@
 #include "Node.h"
 
 
-void Client::OnRecMsg(network_address_t src, Message msg) {
-    std::cout<<msg.str()<<std::endl;
-}
 
 void Client::SendRequest(network_address_t dst, std::string o) {
     Message request(Message::REQUEST);
     request.t = std::time(nullptr);
     request.o = o;
-    send_msg(dst, request);
+    SendMsg(dst, request);
     //TODO：暂设置IP地址为0的节点是主节点，还未做主节点选拔
+
+}
+
+void Client::OnRecvMsg(network_address_t src, Message msg) {
+    std::cout<<msg.str()<<std::endl;
 
 }
 
@@ -30,7 +32,7 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
     //if(GetNodeAddress() ==  % allNodes.size())
 
     for (auto & node : allNodes) {
-        if (node->get_address() == GetNodeAddress()) {
+        if (node->GetNodeAddress() == GetNodeAddress()) {
             continue;
         }
         _otherNodes.push_back(node->GetNodeAddress());
@@ -48,13 +50,19 @@ ViewState & Node::GetState(Message msg) {
         {}
         break;
 
+        case Message::PREPARE:
+            break;
+        case Message::COMMIT:
+            break;
+        case Message::REPLY:
+            break;
     }
 }
 
 void Node::OnRecvMsg(network_address_t src, Message msg) {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    std::cout << "Node() " << src << " -> " << GetNodeAddress << ": " << msg.str() << std::endl;
-    auto & state = get_state(msg);
+    std::cout << "Node() " << src << " -> " << GetNodeAddress() << ": " << msg.str() << std::endl;
+    auto & state = GetState(msg);
     state.handle_message(msg, *this);
 
 /*    if(GetNodeAddress() == _view % allNodes.size())

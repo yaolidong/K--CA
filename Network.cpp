@@ -3,6 +3,7 @@
 //
 
 #include "Network.h"
+
 Network & Network::instance() {
     static Network inst;
     return inst;

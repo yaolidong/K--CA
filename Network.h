@@ -7,8 +7,6 @@
 
 #include <list>
 #include <thread>
-
-#include "Pbft.h"
 #include "Message.h"
 
 using namespace std::chrono_literals;
@@ -37,6 +35,7 @@ public:
 //网络节点
 class NetworkNode
 {
+private:
     const network_address_t _nAddress;
     std::mutex _mutex;
 

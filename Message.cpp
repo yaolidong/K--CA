@@ -10,6 +10,7 @@
 #include "sha256.h"
 #include "Message.h"
 
+
 Message::Message(msg_type_t _type):msg_type(_type) {
 /*    switch (_type) {
         case REQUEST:
@@ -32,7 +33,6 @@ Message::Message(msg_type_t _type):msg_type(_type) {
 
     //c =
 
-}
 
 //消息摘要：具体操作—+时间戳+客户端标识（网络地址）
 std::string Message::diggest() {

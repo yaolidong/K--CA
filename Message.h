@@ -1,9 +1,9 @@
-# pragma once//使头文件不能包含多次
+#ifndef K_CA_MESSAGE_H
+#define K_CA_MESSAGE_H
 #include "Pbft.h"
-#include <cstddef>
 #include <string>
 
-class Message
+ struct Message
 {
 	enum msg_type_t
 	{
@@ -26,3 +26,4 @@ class Message
 	std::string diggest();//生成REQUEST消息摘要
 	std::string str() const;//生成消息内容
 };
+#endif

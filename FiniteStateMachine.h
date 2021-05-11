@@ -1,3 +1,6 @@
+#ifndef K_CA_FINITESTATEMACHINE_H
+#define K_CA_FINITESTATEMACHINE_H
+
 #include "Message.h"
 
 class Node;
@@ -10,7 +13,7 @@ class ViewState
 		Prepared,
 		Committed,
 		Replyed,
-	}state_;
+	}_state;
 
 	size_t accepeted_prepares = 0;
 	size_t accepeted_commits= 0;
@@ -18,4 +21,5 @@ class ViewState
 public:
 	void handle_message(Message msg, Node & node);
 };
+#endif
 

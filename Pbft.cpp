@@ -8,9 +8,7 @@
 
 
 //pbft实现
-#include "Pbft.h"
-
-
+#include "Node.h"
 
 std::mutex console_mutex;
 

@@ -6,18 +6,18 @@
 #include "Node.h"
 
 void ViewState::handle_message(Message msg, Node &node) {
-    switch (state_) {
+    switch (_state) {
         case No_State:
-            msg.o = "Translation"
+/*            msg.o = "Translation"
             msg.t = time(nullptr);
             msg.c = node.GetNodeAddress();
             msg.d = msg.diggest();
-            msg.m = msg.str();
+            msg.m = msg.str();*/
 
             break;
-        case Prepared:
+/*        case Prepared:
             msg.n++;
-            msg.v++;
+            msg.v++;*/
 
             break;
         case Committed:
