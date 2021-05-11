@@ -20,4 +20,15 @@ add_executable(K--CA
         Cache.h
         Cache.cpp
         Sealer.h
-        Sealer.cpp)
+        Sealer.cpp
+        FiniteStateMachine.h
+        FiniteStateMachine.cpp
+        Message.h
+        Message.cpp
+        Network.h
+        Network.cpp
+        Node.h
+        Node.cpp
+        Pbft.h
+        Pbft.cpp
+        )

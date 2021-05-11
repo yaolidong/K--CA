@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <string>
 
-struct Message
+class Message
 {
 	enum msg_type_t
 	{
