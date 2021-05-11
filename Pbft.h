@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <mutex>
+#include "Node.h"
 
 typedef int network_address_t;
 

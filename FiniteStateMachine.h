@@ -6,14 +6,14 @@ class ViewState
 {
 	enum state_t
 	{
-		Requested,
+		No_State,
 		Prepared,
 		Committed,
 		Replyed,
 	}state_;
 
-	unsigned long accepeted_prepares = 0;
-	unsigned long accepeted_commits= 0;
+	size_t accepeted_prepares = 0;
+	size_t accepeted_commits= 0;
 
 public:
 	void handle_message(Message msg, Node & node);

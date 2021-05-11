@@ -45,8 +45,8 @@ network_address_t NetworkNode::GetNodeAddress() const {
      std::thread([this]() {
          while (true) {
              try {
-                 auto msg = Network::instance().RecvMsg(GetNodeAddress());
-                 OnRecvMsg(msg.src, msg.msg);
+                 auto msg = Network::instance().RecvMsg(GetNodeAddress());//查询消息列表里发给自己的消息
+                 OnRecvMsg(msg.src, msg.msg);//TODO：记录消息发送方和消息?
              } catch (...) {
                  std::this_thread::sleep_for(1s);
              }

@@ -6,8 +6,8 @@
 #include "Node.h"
 
 void ViewState::handle_message(Message msg, Node &node) {
-    switch (msg.msg_type) {
-        case Message::REQUEST:
+    switch (state_) {
+        case No_State:
             msg.o = "Translation"
             msg.t = time(nullptr);
             msg.c = node.GetNodeAddress();
@@ -15,22 +15,30 @@ void ViewState::handle_message(Message msg, Node &node) {
             msg.m = msg.str();
 
             break;
-        case Message::PRE_PREPARE:
+        case Prepared:
             msg.n++;
             msg.v++;
 
             break;
-        case Message::PREPARE:
+        case Committed:
             ;
             break;
-        case Message::COMMIT:
-            ;
-            break;
-        case Message::REPLY:
+        case Replyed:
             ;
             break;
         default:
             std::cout<<"Your Entered Message is not Standard!"<<std::endl;
     }
+
+    // if (prepared) {
+    //     for (auto addr : other_nodes_) {
+    //         node.send_commit();
+    //     }
+    // }
+    //
+    // if (committed_local) {
+    //     node.execute_operation();
+    //     node.send_reply();
+    // }
 
 }
