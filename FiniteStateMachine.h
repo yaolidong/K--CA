@@ -7,9 +7,11 @@ class Node;
 
 class ViewState
 {
+
 	enum state_t
 	{
-		No_State,
+	    Requested,
+        Pre_prepared,
 		Prepared,
 		Committed,
 		Replyed,
@@ -19,7 +21,8 @@ class ViewState
 	size_t accepeted_commits= 0;
 
 public:
+    ViewState(state_t _st);
 	void handle_message(Message msg, Node & node);
+	static state_t SetState(Message msg);
 };
 #endif
-

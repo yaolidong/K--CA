@@ -19,37 +19,6 @@ CMakeFiles/K--CA.dir/Cache.cpp.o
  /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp
  /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
  /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.h
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
-CMakeFiles/K--CA.dir/Message.cpp.o
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
-CMakeFiles/K--CA.dir/Network.cpp.o
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
-CMakeFiles/K--CA.dir/Node.cpp.o
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
-CMakeFiles/K--CA.dir/Pbft.cpp.o
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.h
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp
- /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
 CMakeFiles/K--CA.dir/Sealer.cpp.o
  /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
  /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp

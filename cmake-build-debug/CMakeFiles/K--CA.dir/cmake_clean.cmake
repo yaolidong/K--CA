@@ -9,7 +9,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/K--CA.dir/Pbft.cpp.o"
   "CMakeFiles/K--CA.dir/Sealer.cpp.o"
   "CMakeFiles/K--CA.dir/Translation.cpp.o"
-  "CMakeFiles/K--CA.dir/main.cpp.o"
   "CMakeFiles/K--CA.dir/sha256.cpp.o"
   "K--CA"
   "K--CA.pdb"

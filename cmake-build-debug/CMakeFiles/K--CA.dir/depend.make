@@ -19,37 +19,6 @@ CMakeFiles/K--CA.dir/Cache.cpp.o: ../Cache.cpp
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../Cache.h
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../Translation.h
 
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../FiniteStateMachine.cpp
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../FiniteStateMachine.h
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../Message.h
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../Network.h
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../Node.h
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../Pbft.h
-
-CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.cpp
-CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.h
-CMakeFiles/K--CA.dir/Message.cpp.o: ../Pbft.h
-CMakeFiles/K--CA.dir/Message.cpp.o: ../sha256.h
-
-CMakeFiles/K--CA.dir/Network.cpp.o: ../Message.h
-CMakeFiles/K--CA.dir/Network.cpp.o: ../Network.cpp
-CMakeFiles/K--CA.dir/Network.cpp.o: ../Network.h
-CMakeFiles/K--CA.dir/Network.cpp.o: ../Pbft.h
-
-CMakeFiles/K--CA.dir/Node.cpp.o: ../FiniteStateMachine.h
-CMakeFiles/K--CA.dir/Node.cpp.o: ../Message.h
-CMakeFiles/K--CA.dir/Node.cpp.o: ../Network.h
-CMakeFiles/K--CA.dir/Node.cpp.o: ../Node.cpp
-CMakeFiles/K--CA.dir/Node.cpp.o: ../Node.h
-CMakeFiles/K--CA.dir/Node.cpp.o: ../Pbft.h
-
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../FiniteStateMachine.h
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Message.h
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Network.h
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Node.h
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Pbft.cpp
-CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Pbft.h
-
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Cache.h
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Sealer.cpp
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Sealer.h

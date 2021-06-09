@@ -12,29 +12,12 @@
 
 
 Message::Message(msg_type_t _type):msg_type(_type) {
-/*    switch (_type) {
-        case REQUEST:
-            o = "REQUEST";
-            t = time(nullptr);
-            c = 0;
-
-            break;
-        case PRE_PREPARE:
-            v = 0;
-            d =
-            break;
-        case COMMIT:
-            break;
-        case PREPARE:
-            break;
-        case REPLY:
-            break;*/
     }
 
-    //c =
 
 
-//消息摘要：具体操作—+时间戳+客户端标识（网络地址）
+
+//消息摘要：具体操作+时间戳+客户端标识（网络地址）
 std::string Message::diggest() {
     std::stringstream ss;
     ss << o << t << c;

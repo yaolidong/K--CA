@@ -14,7 +14,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp" "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/Pbft.cpp.o"
   "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp" "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/Sealer.cpp.o"
   "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp" "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/Translation.cpp.o"
-  "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/main.cpp" "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/main.cpp.o"
   "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp" "/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/sha256.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")

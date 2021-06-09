@@ -412,33 +412,6 @@ Translation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/Translation.cpp.s
 .PHONY : Translation.cpp.s
 
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 sha256.o: sha256.cpp.o
 
 .PHONY : sha256.o
@@ -505,9 +478,6 @@ help:
 	@echo "... Translation.o"
 	@echo "... Translation.i"
 	@echo "... Translation.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... sha256.o"
 	@echo "... sha256.i"
 	@echo "... sha256.s"

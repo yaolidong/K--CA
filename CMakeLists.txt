@@ -12,7 +12,6 @@ add_executable(K--CA
         Block.cpp
         Block.h
         Blockchain.h
-        main.cpp
         sha256.cpp
         sha256.h
         Translation.h

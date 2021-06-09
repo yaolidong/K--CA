@@ -142,9 +142,6 @@
 		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.h">
 			<Option target="K--CA"/>
 		</Unit>
-		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/main.cpp">
-			<Option target="K--CA"/>
-		</Unit>
 		<Unit filename="/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp">
 			<Option target="K--CA"/>
 		</Unit>
