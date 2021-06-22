@@ -22,6 +22,7 @@ class ViewState
 	size_t accepeted_commits= 0;
 
 public:
+	ViewState(state_t _st);
     ViewState & GetState(Message msg);
 	void handle_message(Message msg, Node & node);
 
