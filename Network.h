@@ -28,7 +28,7 @@ public:
     static Network & instance();//返回网络实例（静态全局）
     bool Empty();
     void SendMsg(network_address_t src, network_address_t dst, Message msg);//将消息数据保存在列表里
-    MessageAddressed RecvMsg(network_address_t dst);//查询消息列表中是否有该节点的消息
+    MessageAddressed RecvMsg(network_address_t dst);//查询消息列表中是否有该节点的消息并取出
     network_address_t  AssignAddress();//分配网络地址，0，1，2，3，4
 };
 

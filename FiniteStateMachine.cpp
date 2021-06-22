@@ -6,10 +6,6 @@
 #include "Node.h"
 
 
-ViewState::ViewState(ViewState::state_t _st): _state(_st){
-
-}
-
 void ViewState::handle_message(Message msg, Node & node) {
     switch (msg.msg_type) {
         case Message::REQUEST: {
@@ -52,19 +48,20 @@ void ViewState::handle_message(Message msg, Node & node) {
 
 }
 
-ViewState::state_t ViewState::SetState(Message msg) {
 
-    switch (msg.msg_type) {
+ViewState ViewState::GetState(Message msg) {
+    ViewState vs;
+    switch(msg.msg_type){
         case Message::REQUEST:
-            return ViewState::Requested;
-        case Message::PRE_PREPARE:
-            return ViewState::Pre_prepared;
+        {}
+            break;
         case Message::PREPARE:
-            return ViewState::Prepared;
-        case Message::COMMIT:
-            return ViewState::Committed;
-        case Message::REPLY:
-            return ViewState::Replyed;
+        {}
+            break;
+
     }
+
+
+    return vs;
 }
 

@@ -62,10 +62,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA
+CMAKE_SOURCE_DIR = /Users/yao/Documents/GitHub/desktop-tutorial/K--CA
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/K--CA.dir/depend.make
@@ -78,146 +78,146 @@ include CMakeFiles/K--CA.dir/flags.make
 
 CMakeFiles/K--CA.dir/Blockchain.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Blockchain.cpp.o: ../Blockchain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/K--CA.dir/Blockchain.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Blockchain.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/K--CA.dir/Blockchain.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Blockchain.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp
 
 CMakeFiles/K--CA.dir/Blockchain.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Blockchain.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp > CMakeFiles/K--CA.dir/Blockchain.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp > CMakeFiles/K--CA.dir/Blockchain.cpp.i
 
 CMakeFiles/K--CA.dir/Blockchain.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Blockchain.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp -o CMakeFiles/K--CA.dir/Blockchain.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp -o CMakeFiles/K--CA.dir/Blockchain.cpp.s
 
 CMakeFiles/K--CA.dir/Block.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Block.cpp.o: ../Block.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/K--CA.dir/Block.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Block.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/K--CA.dir/Block.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Block.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp
 
 CMakeFiles/K--CA.dir/Block.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Block.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp > CMakeFiles/K--CA.dir/Block.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp > CMakeFiles/K--CA.dir/Block.cpp.i
 
 CMakeFiles/K--CA.dir/Block.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Block.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp -o CMakeFiles/K--CA.dir/Block.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp -o CMakeFiles/K--CA.dir/Block.cpp.s
 
 CMakeFiles/K--CA.dir/sha256.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/sha256.cpp.o: ../sha256.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/K--CA.dir/sha256.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/sha256.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/K--CA.dir/sha256.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/sha256.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp
 
 CMakeFiles/K--CA.dir/sha256.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/sha256.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp > CMakeFiles/K--CA.dir/sha256.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp > CMakeFiles/K--CA.dir/sha256.cpp.i
 
 CMakeFiles/K--CA.dir/sha256.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/sha256.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp -o CMakeFiles/K--CA.dir/sha256.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp -o CMakeFiles/K--CA.dir/sha256.cpp.s
 
 CMakeFiles/K--CA.dir/Translation.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Translation.cpp.o: ../Translation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/K--CA.dir/Translation.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Translation.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/K--CA.dir/Translation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Translation.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp
 
 CMakeFiles/K--CA.dir/Translation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Translation.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp > CMakeFiles/K--CA.dir/Translation.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp > CMakeFiles/K--CA.dir/Translation.cpp.i
 
 CMakeFiles/K--CA.dir/Translation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Translation.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp -o CMakeFiles/K--CA.dir/Translation.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Translation.cpp -o CMakeFiles/K--CA.dir/Translation.cpp.s
 
 CMakeFiles/K--CA.dir/Cache.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../Cache.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/K--CA.dir/Cache.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Cache.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/K--CA.dir/Cache.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Cache.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp
 
 CMakeFiles/K--CA.dir/Cache.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Cache.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp > CMakeFiles/K--CA.dir/Cache.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp > CMakeFiles/K--CA.dir/Cache.cpp.i
 
 CMakeFiles/K--CA.dir/Cache.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Cache.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp -o CMakeFiles/K--CA.dir/Cache.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp -o CMakeFiles/K--CA.dir/Cache.cpp.s
 
 CMakeFiles/K--CA.dir/Sealer.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Sealer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/K--CA.dir/Sealer.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Sealer.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/K--CA.dir/Sealer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Sealer.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp
 
 CMakeFiles/K--CA.dir/Sealer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Sealer.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp > CMakeFiles/K--CA.dir/Sealer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp > CMakeFiles/K--CA.dir/Sealer.cpp.i
 
 CMakeFiles/K--CA.dir/Sealer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Sealer.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp -o CMakeFiles/K--CA.dir/Sealer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp -o CMakeFiles/K--CA.dir/Sealer.cpp.s
 
 CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../FiniteStateMachine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp
 
 CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp > CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp > CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i
 
 CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s
 
 CMakeFiles/K--CA.dir/Message.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/K--CA.dir/Message.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Message.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/K--CA.dir/Message.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Message.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
 
 CMakeFiles/K--CA.dir/Message.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Message.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp > CMakeFiles/K--CA.dir/Message.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp > CMakeFiles/K--CA.dir/Message.cpp.i
 
 CMakeFiles/K--CA.dir/Message.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Message.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp -o CMakeFiles/K--CA.dir/Message.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp -o CMakeFiles/K--CA.dir/Message.cpp.s
 
 CMakeFiles/K--CA.dir/Network.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Network.cpp.o: ../Network.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/K--CA.dir/Network.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Network.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/K--CA.dir/Network.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Network.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
 
 CMakeFiles/K--CA.dir/Network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Network.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp > CMakeFiles/K--CA.dir/Network.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp > CMakeFiles/K--CA.dir/Network.cpp.i
 
 CMakeFiles/K--CA.dir/Network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Network.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp -o CMakeFiles/K--CA.dir/Network.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp -o CMakeFiles/K--CA.dir/Network.cpp.s
 
 CMakeFiles/K--CA.dir/Node.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Node.cpp.o: ../Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/K--CA.dir/Node.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Node.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/K--CA.dir/Node.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Node.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
 
 CMakeFiles/K--CA.dir/Node.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Node.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp > CMakeFiles/K--CA.dir/Node.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp > CMakeFiles/K--CA.dir/Node.cpp.i
 
 CMakeFiles/K--CA.dir/Node.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Node.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp -o CMakeFiles/K--CA.dir/Node.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp -o CMakeFiles/K--CA.dir/Node.cpp.s
 
 CMakeFiles/K--CA.dir/Pbft.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Pbft.cpp.o: ../Pbft.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/K--CA.dir/Pbft.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Pbft.cpp.o -c /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/K--CA.dir/Pbft.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/Pbft.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp
 
 CMakeFiles/K--CA.dir/Pbft.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/Pbft.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp > CMakeFiles/K--CA.dir/Pbft.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp > CMakeFiles/K--CA.dir/Pbft.cpp.i
 
 CMakeFiles/K--CA.dir/Pbft.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Pbft.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp -o CMakeFiles/K--CA.dir/Pbft.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp -o CMakeFiles/K--CA.dir/Pbft.cpp.s
 
 # Object files for target K--CA
 K____CA_OBJECTS = \
@@ -249,7 +249,7 @@ K--CA: CMakeFiles/K--CA.dir/Node.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Pbft.cpp.o
 K--CA: CMakeFiles/K--CA.dir/build.make
 K--CA: CMakeFiles/K--CA.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable K--CA"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable K--CA"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/K--CA.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -262,6 +262,6 @@ CMakeFiles/K--CA.dir/clean:
 .PHONY : CMakeFiles/K--CA.dir/clean
 
 CMakeFiles/K--CA.dir/depend:
-	cd /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug /Users/yaolidong/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/yao/Documents/GitHub/desktop-tutorial/K--CA /Users/yao/Documents/GitHub/desktop-tutorial/K--CA /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/K--CA.dir/depend
 
