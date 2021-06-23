@@ -10,20 +10,16 @@ ViewState::ViewState(state_t _st):_state(_st){}
 void ViewState::handle_message(Message msg, Node & node) {
     switch (msg.msg_type) {
         case Message::REQUEST: {
-            std::cout<<msg.str()<<std::endl;
-            msg.n = 0;
-            msg.i = node.GetNodeAddress();
             msg.msg_type = Message::PRE_PREPARE;
+            Message::n++;
+            msg.m = msg.str();
+            msg.d = msg.diggest();
             node.SendAll(msg);
         }
             break;
-
-
         case Message::PRE_PREPARE: {
-            msg.o = "True";
-            msg.i = node.GetNodeAddress();
             msg.msg_type = Message::PREPARE;
-            node.SendAll(msg);
+              msg.i = node.GetNodeAddress();
 
         }
             break;
@@ -45,6 +41,8 @@ void ViewState::handle_message(Message msg, Node & node) {
             node.SendMsg(msg.c,msg);
             }
             break;
+        case Message::REPLY:
+            break;
     }
 
 }
@@ -52,18 +50,33 @@ void ViewState::handle_message(Message msg, Node & node) {
 
 ViewState ViewState::GetState(Message msg) {
     switch(msg.msg_type){
-        case Message::REQUEST:
+        case (Message::REQUEST):
         {
-			ViewState noStatus(Pre_prepared);
-			return noStatus;
+            (*this)._state = Pre_prepared;
+            break;
 		}
-        case Message::PREPARE:
+        case Message::PRE_PREPARE:
         {
-			ViewState prepared(Prepared);
-			return prepared;
+            (*this)._state = Prepared;
+            break;
 		}
+        case (Message::PREPARE):
+        {
+            (*this)._state = Committed;
+            break;
+        }
+        case Message::COMMIT:
+        {
+            (*this)._state = Replyed;
+            break;
+        }
 
+        case Message::REPLY:
+            break;
     }
 
+}
+
+ViewState::ViewState() :_state(Pre_prepared){
 }
 

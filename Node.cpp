@@ -12,7 +12,6 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     request.o = o;
     request.c = request.i = GetNodeAddress();
     request.m = request.str();
-    request.n = 0;
     request.d = request.diggest();
     SendMsg(dst, request);//TODO：暂设置IP地址为0的节点是主节点，还未做主节点选拔
 }
@@ -39,23 +38,9 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 void Node::OnRecvMsg(network_address_t src, Message msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-
-    if(msg.msg_type == Message::REQUEST)
-    {
-        Message pre_prepare(Message::PRE_PREPARE);
-
-        pre_prepare.t = msg.t;
-        pre_prepare.o = msg.o;
-        pre_prepare.c = msg.c;
-        pre_prepare.m = pre_prepare.str();
-        pre_prepare.d = pre_prepare.diggest();
-
-
-    }
-    auto state = GetState(msg);
+    ViewState state;
+    state.GetState(msg);
     state.handle_message(msg, *this);
-
-
 }
 
 //发送给其他所有节点

@@ -35,7 +35,7 @@ class Node : public NetworkNode {
 
 public:
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
-
+    friend class ViewState;
     void OnRecvMsg(network_address_t src, Message msg) override;//检查是否收到过该节点的信息
     void SendAll(Message msg);//转发给所有节点
 
