@@ -38,7 +38,7 @@ network_address_t Network::AssignAddress() {
     return ++nextAddress;
 }
 
-network_address_t NetworkNode::GetNodeAddress() const {
+network_address_t NetworkNode::GetNodeAddress() const{
     return _nAddress;
 }
 

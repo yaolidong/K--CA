@@ -8,8 +8,9 @@
 
 ViewState::ViewState(state_t _st):_state(_st){}
 void ViewState::handle_message(Message msg, Node & node) {
-    switch (msg.msg_type) {
-        case Message::REQUEST: {
+
+    switch (_state) {
+        case Pre_prepared: {
             msg.msg_type = Message::PRE_PREPARE;
             Message::n++;
             msg.m = msg.str();
@@ -17,15 +18,16 @@ void ViewState::handle_message(Message msg, Node & node) {
             node.SendAll(msg);
         }
             break;
-        case Message::PRE_PREPARE: {
+        case Prepared: {
             msg.msg_type = Message::PREPARE;
-              msg.i = node.GetNodeAddress();
+            msg.i = node.GetNodeAdd();
+
 
         }
             break;
-        case Message::PREPARE:{
+        case Committed:{
             msg.o = "Verify";
-            msg.i = node.GetNodeAddress();
+            node.SendAll(msg);
             msg.msg_type = Message::COMMIT;
             node.SendAll(msg);
 
@@ -33,46 +35,44 @@ void ViewState::handle_message(Message msg, Node & node) {
             break;
 
 
-        case Message::COMMIT:
+        case Replyed:
         {
             msg.o = "Commit";
             msg.msg_type = Message::REPLY;
-            msg.v++;
+            Message::v++;
             node.SendMsg(msg.c,msg);
             }
-            break;
-        case Message::REPLY:
             break;
     }
 
 }
 
 
-ViewState ViewState::GetState(Message msg) {
+std::string ViewState::GetState(const Message & msg) {
     switch(msg.msg_type){
         case (Message::REQUEST):
         {
             (*this)._state = Pre_prepared;
-            break;
+            return "Pre_prepared";
 		}
         case Message::PRE_PREPARE:
         {
             (*this)._state = Prepared;
-            break;
+            return "Prepared";
 		}
         case (Message::PREPARE):
         {
             (*this)._state = Committed;
-            break;
+            return "Committed";
         }
         case Message::COMMIT:
         {
             (*this)._state = Replyed;
-            break;
+            return "Replyed";
         }
 
         case Message::REPLY:
-            break;
+            return "None";
     }
 
 }

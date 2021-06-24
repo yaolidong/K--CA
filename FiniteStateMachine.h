@@ -24,7 +24,7 @@ class ViewState
 public:
     ViewState();
 	ViewState(state_t _st);
-    ViewState  GetState(Message msg);
+    std::string GetState(const Message & msg);
 	void handle_message(Message msg, Node & node);
 
 };

@@ -10,6 +10,7 @@
 #include <iostream>
 
 
+
 #include "FiniteStateMachine.h"
 #include "Network.h"
 
@@ -29,13 +30,14 @@ class Node : public NetworkNode {
         std::string o;//具体操作
         time_t t;
     };
-    std::map<key_t, ViewState> _state;
+    std::map<std::string, std::string> _state;
     size_t _seq = 0;
     size_t _view = 0;
 
 public:
+    void Signature(Message & msg,ViewState vs);
+    network_address_t  GetNodeAdd();
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
-    friend class ViewState;
     void OnRecvMsg(network_address_t src, Message msg) override;//检查是否收到过该节点的信息
     void SendAll(Message msg);//转发给所有节点
 

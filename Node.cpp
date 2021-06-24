@@ -3,6 +3,8 @@
 //
 
 #include "Node.h"
+#include "sha256.h"
+#include <sstream>
 
 
 
@@ -51,3 +53,14 @@ void Node::SendAll(Message msg) {
         SendMsg(dst,msg);
     }
 }
+
+network_address_t Node::GetNodeAdd() {
+    return NetworkNode::GetNodeAddress();
+}
+
+void Node::Signature(Message & msg,ViewState vs) {
+    std::stringstream  ss;
+    ss<<msg.c<<msg.o<<msg.t;
+    _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
+}
+
