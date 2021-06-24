@@ -59,8 +59,7 @@ int main()
             std::this_thread::sleep_for(1s);
 
         //Pre_Prepare
-    MessageAddressed msg = nodes[0]->R
-        nodes[0]->
+		
 
 
 	return 0;

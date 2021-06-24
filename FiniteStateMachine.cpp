@@ -13,6 +13,7 @@ void ViewState::handle_message(Message msg, Node & node) {
         case Pre_prepared: {
             msg.msg_type = Message::PRE_PREPARE;
             Message::n++;
+			
             msg.m = msg.str();
             msg.d = msg.diggest();
             node.SendAll(msg);
@@ -23,10 +24,10 @@ void ViewState::handle_message(Message msg, Node & node) {
             msg.i = node.GetNodeAdd();
 
 
+
         }
             break;
         case Committed:{
-            msg.o = "Verify";
             node.SendAll(msg);
             msg.msg_type = Message::COMMIT;
             node.SendAll(msg);
@@ -37,8 +38,6 @@ void ViewState::handle_message(Message msg, Node & node) {
 
         case Replyed:
         {
-            msg.o = "Commit";
-            msg.msg_type = Message::REPLY;
             Message::v++;
             node.SendMsg(msg.c,msg);
             }
@@ -48,6 +47,7 @@ void ViewState::handle_message(Message msg, Node & node) {
 }
 
 
+//change state with msg  and pull in map<>
 std::string ViewState::GetState(const Message & msg) {
     switch(msg.msg_type){
         case (Message::REQUEST):
@@ -71,8 +71,6 @@ std::string ViewState::GetState(const Message & msg) {
             return "Replyed";
         }
 
-        case Message::REPLY:
-            return "None";
     }
 
 }

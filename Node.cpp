@@ -3,8 +3,11 @@
 //
 
 #include "Node.h"
+#include "Message.h"
 #include "sha256.h"
 #include <sstream>
+#include <string>
+#include <utility>
 
 
 
@@ -64,3 +67,12 @@ void Node::Signature(Message & msg,ViewState vs) {
     _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
 }
 
+void Node::VerfitySignature(Message msg)
+{
+	sstream ss;
+	ss << msg.v << msg.d << GetNodeAdd() << msg.n;
+	for(auto it  = _otherNodes.cbegin();it != _otherNodes.cend(); it++)
+	{
+		_log.insert(std::make_pair<int,std::string>((*it), ss.str());
+	}
+}
