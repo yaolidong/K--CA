@@ -59,7 +59,6 @@ int main()
             std::this_thread::sleep_for(1s);
 
         //Pre_Prepare
-        for(auto & it = )
 
 		
 

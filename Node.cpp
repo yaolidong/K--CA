@@ -74,16 +74,16 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-void Node::Signature(Message & msg,ViewState vs) {
-    std::stringstream  ss;
-    ss<<msg.c<<msg.o<<msg.t;
-    _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
-}
-
-void Node::VerfitySignature( Message msg)
-{
-	std::stringstream ss;
-	ss << Message::v << msg.d << GetNodeAdd() << Message::n;
-	_log.insert(std::make_pair<int,std::string>((int)src, ss.str()));
-
-}
+//void Node::Signature(Message & msg,ViewState vs) {
+//    std::stringstream  ss;
+//    ss<<msg.c<<msg.o<<msg.t;
+//    _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
+//}
+//
+//void Node::VerfitySignature( Message msg)
+//{
+//	std::stringstream ss;
+//	ss << Message::v << msg.d << GetNodeAdd() << Message::n;
+//	_log.insert(std::make_pair<int,std::string>((int)src, ss.str()));
+//
+//}

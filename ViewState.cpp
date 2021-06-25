@@ -3,20 +3,18 @@
 //
 
 #include "ViewState.h"
+#include "Message.h"
 #include "Node.h"
 
 
-ViewState::ViewState() :_state(Pre_prepared){}
+ViewState::ViewState() :_state(Pre_prepare){}
 ViewState::ViewState(state_t _st):_state(_st){}
 void ViewState::handle_message(Message msg, Node & node) {
 
     switch (_state) {
-        case Pre_prepare: {
+        case Pre_prepare:	
             msg.msg_type = Message::PRE_PREPARE;
             Message::n++;
-
-
-			
             msg.m = msg.str();
             msg.d = msg.diggest();
             node.SendAll(msg);
@@ -24,17 +22,22 @@ void ViewState::handle_message(Message msg, Node & node) {
             break;
         case Prepare: {
             msg.msg_type = Message::PREPARE;
-            msg.i = node.GetNodeAdd();
-
-
-
+			//sure tx if true;
+			msg.i = node.GetNodeAdd();
+			node.SendAll(msg);
         }
+
             break;
         case Commit:{
-            accepeted_prepares++;
-            node.SendAll(msg);
             msg.msg_type = Message::COMMIT;
-            node.SendAll(msg);
+			accepeted_prepares++;
+			if (accepeted_prepares > 2 * Fault_Node + 1 )
+			{
+				// up chain;
+				msg.o = "true";
+			}
+			if("true" == msg.o)
+				 node.SendAll(msg);
 
         }
             break;
@@ -42,10 +45,15 @@ void ViewState::handle_message(Message msg, Node & node) {
 
         case Reply:
         {
-            Message::v++;
             accepeted_commits++;
-            node.SendMsg(msg.c,msg);
-            }
+			if(accepeted_commits > 2 * Fault_Node + 1 )
+			{
+				//up chain;
+				msg.o = "upchain";
+			}
+			if("upchain" == msg.o)
+				{}	//TODO:send reply msg;
+		}
             break;
     }
 

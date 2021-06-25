@@ -40,8 +40,7 @@ public:
     void Signature(Message & msg,ViewState vs);
 	void VerfitySignature(Message msg);
     network_address_t  GetNodeAdd();
-    void SendPrepare(network_address_t dst, Message msg);
-    void SendCommit(network_address_t dst, Message msg);
+	//void SendReply();
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
     void OnRecvMsg(network_address_t src, Message msg) override;//检查是否收到过该节点的信息
     void SendAll(Message msg);//转发给所有节点
