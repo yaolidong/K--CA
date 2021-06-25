@@ -223,33 +223,6 @@ Cache.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/Cache.cpp.s
 .PHONY : Cache.cpp.s
 
-FiniteStateMachine.o: FiniteStateMachine.cpp.o
-
-.PHONY : FiniteStateMachine.o
-
-# target to build an object file
-FiniteStateMachine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o
-.PHONY : FiniteStateMachine.cpp.o
-
-FiniteStateMachine.i: FiniteStateMachine.cpp.i
-
-.PHONY : FiniteStateMachine.i
-
-# target to preprocess a source file
-FiniteStateMachine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i
-.PHONY : FiniteStateMachine.cpp.i
-
-FiniteStateMachine.s: FiniteStateMachine.cpp.s
-
-.PHONY : FiniteStateMachine.s
-
-# target to generate assembly for a file
-FiniteStateMachine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s
-.PHONY : FiniteStateMachine.cpp.s
-
 Message.o: Message.cpp.o
 
 .PHONY : Message.o
@@ -412,6 +385,33 @@ Translation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/Translation.cpp.s
 .PHONY : Translation.cpp.s
 
+ViewState.o: ViewState.cpp.o
+
+.PHONY : ViewState.o
+
+# target to build an object file
+ViewState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/ViewState.cpp.o
+.PHONY : ViewState.cpp.o
+
+ViewState.i: ViewState.cpp.i
+
+.PHONY : ViewState.i
+
+# target to preprocess a source file
+ViewState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/ViewState.cpp.i
+.PHONY : ViewState.cpp.i
+
+ViewState.s: ViewState.cpp.s
+
+.PHONY : ViewState.s
+
+# target to generate assembly for a file
+ViewState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/K--CA.dir/build.make CMakeFiles/K--CA.dir/ViewState.cpp.s
+.PHONY : ViewState.cpp.s
+
 sha256.o: sha256.cpp.o
 
 .PHONY : sha256.o
@@ -457,9 +457,6 @@ help:
 	@echo "... Cache.o"
 	@echo "... Cache.i"
 	@echo "... Cache.s"
-	@echo "... FiniteStateMachine.o"
-	@echo "... FiniteStateMachine.i"
-	@echo "... FiniteStateMachine.s"
 	@echo "... Message.o"
 	@echo "... Message.i"
 	@echo "... Message.s"
@@ -478,6 +475,9 @@ help:
 	@echo "... Translation.o"
 	@echo "... Translation.i"
 	@echo "... Translation.s"
+	@echo "... ViewState.o"
+	@echo "... ViewState.i"
+	@echo "... ViewState.s"
 	@echo "... sha256.o"
 	@echo "... sha256.i"
 	@echo "... sha256.s"

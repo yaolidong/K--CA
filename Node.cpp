@@ -26,6 +26,19 @@ void Client::OnRecvMsg(network_address_t src, Message msg) {
 
 }
 
+void Node::SendPrepare(network_address_t dst, Message msg)
+{
+    Message prepare(Message::PREPARE);
+    SendMsg(dst,prepare);
+
+}
+void Node::SendCommit(network_address_t dst, Message msg)
+{
+    Message commit(Message::COMMIT);
+    SendMsg(dst,commit);
+
+}
+
 
 void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 
@@ -67,12 +80,10 @@ void Node::Signature(Message & msg,ViewState vs) {
     _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
 }
 
-void Node::VerfitySignature(Message msg)
+void Node::VerfitySignature( Message msg)
 {
-	sstream ss;
-	ss << msg.v << msg.d << GetNodeAdd() << msg.n;
-	for(auto it  = _otherNodes.cbegin();it != _otherNodes.cend(); it++)
-	{
-		_log.insert(std::make_pair<int,std::string>((*it), ss.str());
-	}
+	std::stringstream ss;
+	ss << Message::v << msg.d << GetNodeAdd() << Message::n;
+	_log.insert(std::make_pair<int,std::string>((int)src, ss.str()));
+
 }

@@ -1,5 +1,5 @@
-#ifndef K_CA_FINITESTATEMACHINE_H
-#define K_CA_FINITESTATEMACHINE_H
+#ifndef K_CA_VIEWSTATE_H
+#define K_CA_VIEWSTATE_H
 
 #include "Message.h"
 #include "Node.h"
@@ -12,10 +12,10 @@ class ViewState
 
 	enum state_t
 	{
-        Pre_prepared,
-		Prepared,
-		Committed,
-		Replyed,
+        Pre_prepare,
+		Prepare,
+		Commit,
+		Reply,
 	}_state;
 
 	size_t accepeted_prepares = 0;

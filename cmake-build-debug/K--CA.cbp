@@ -100,12 +100,6 @@
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h">
 			<Option target="K--CA"/>
 		</Unit>
-		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp">
-			<Option target="K--CA"/>
-		</Unit>
-		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.h">
-			<Option target="K--CA"/>
-		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp">
 			<Option target="K--CA"/>
 		</Unit>
@@ -140,6 +134,12 @@
 			<Option target="K--CA"/>
 		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Translation.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h">
 			<Option target="K--CA"/>
 		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.cpp">

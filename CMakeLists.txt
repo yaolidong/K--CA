@@ -20,8 +20,8 @@ add_executable(K--CA
         Cache.cpp
         Sealer.h
         Sealer.cpp
-        FiniteStateMachine.h
-        FiniteStateMachine.cpp
+        ViewState.h
+        ViewState.cpp
         Message.h
         Message.cpp
         Network.h

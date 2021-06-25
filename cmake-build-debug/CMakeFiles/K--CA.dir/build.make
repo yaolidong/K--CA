@@ -154,18 +154,18 @@ CMakeFiles/K--CA.dir/Sealer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/Sealer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp -o CMakeFiles/K--CA.dir/Sealer.cpp.s
 
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: CMakeFiles/K--CA.dir/flags.make
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o: ../FiniteStateMachine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp
+CMakeFiles/K--CA.dir/ViewState.cpp.o: CMakeFiles/K--CA.dir/flags.make
+CMakeFiles/K--CA.dir/ViewState.cpp.o: ../ViewState.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/K--CA.dir/ViewState.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/K--CA.dir/ViewState.cpp.o -c /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp
 
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp > CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.i
+CMakeFiles/K--CA.dir/ViewState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/K--CA.dir/ViewState.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp > CMakeFiles/K--CA.dir/ViewState.cpp.i
 
-CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/FiniteStateMachine.cpp -o CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.s
+CMakeFiles/K--CA.dir/ViewState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/K--CA.dir/ViewState.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp -o CMakeFiles/K--CA.dir/ViewState.cpp.s
 
 CMakeFiles/K--CA.dir/Message.cpp.o: CMakeFiles/K--CA.dir/flags.make
 CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.cpp
@@ -227,7 +227,7 @@ K____CA_OBJECTS = \
 "CMakeFiles/K--CA.dir/Translation.cpp.o" \
 "CMakeFiles/K--CA.dir/Cache.cpp.o" \
 "CMakeFiles/K--CA.dir/Sealer.cpp.o" \
-"CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o" \
+"CMakeFiles/K--CA.dir/ViewState.cpp.o" \
 "CMakeFiles/K--CA.dir/Message.cpp.o" \
 "CMakeFiles/K--CA.dir/Network.cpp.o" \
 "CMakeFiles/K--CA.dir/Node.cpp.o" \
@@ -242,7 +242,7 @@ K--CA: CMakeFiles/K--CA.dir/sha256.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Translation.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Cache.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Sealer.cpp.o
-K--CA: CMakeFiles/K--CA.dir/FiniteStateMachine.cpp.o
+K--CA: CMakeFiles/K--CA.dir/ViewState.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Message.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Network.cpp.o
 K--CA: CMakeFiles/K--CA.dir/Node.cpp.o
