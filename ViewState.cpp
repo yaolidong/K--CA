@@ -3,42 +3,41 @@
 //
 
 #include "ViewState.h"
+#include "Message.h"
 #include "Node.h"
 
-size_t ViewState::accepeted_commits = 0;
-size_t ViewState::accepeted_prepares = 0;
 
-ViewState::ViewState() :_state(Pre_prepare){
-}
+ViewState::ViewState() :_state(Pre_prepare){}
 ViewState::ViewState(state_t _st):_state(_st){}
 void ViewState::handle_message(Message msg, Node & node) {
 
     switch (_state) {
-        case Pre_prepare: {
+        case Pre_prepare:	
             msg.msg_type = Message::PRE_PREPARE;
-           Message::n++;
-           msg.i = node.GetNodeAdd();
-           msg.m = msg.str();
-           msg.d = msg.diggest();
+            Message::n++;
+            msg.m = msg.str();
+            msg.d = msg.diggest();
             node.SendAll(msg);
         }
             break;
         case Prepare: {
             msg.msg_type = Message::PREPARE;
-            msg.i = node.GetNodeAdd();
-            node.SendPrepare(msg);
-
-
-
+			//sure tx if true;
+			msg.i = node.GetNodeAdd();
+			node.SendAll(msg);
         }
+
             break;
         case Commit:{
-            accepeted_prepares++;
-            //TODO：如果验证prepare消息正确，则
             msg.msg_type = Message::COMMIT;
-            node.SendCommit(msg);
-
-
+			accepeted_prepares++;
+			if (accepeted_prepares > 2 * Fault_Node + 1 )
+			{
+				// up chain;
+				msg.o = "true";
+			}
+			if("true" == msg.o)
+				 node.SendAll(msg);
 
         }
             break;
@@ -47,55 +46,43 @@ void ViewState::handle_message(Message msg, Node & node) {
         case Reply:
         {
             accepeted_commits++;
-            if (accepeted_commits > 2 * Num_Node)
-            {
-                msg.msg_type = Message::Done;
-                node.SendMsg(msg.c,msg);
-            }
-
-
-        }
+			if(accepeted_commits > 2 * Fault_Node + 1 )
+			{
+				//up chain;
+				msg.o = "upchain";
+			}
+			if("upchain" == msg.o)
+				{}	//TODO:send reply msg;
+		}
             break;
-
-        case Reset:
-        {
-            Message::v++;
-            accepeted_prepares = 0;
-            accepeted_commits = 0;
-        }
-        break;
     }
 
 }
 
 
-void ViewState::GetState(const Message & msg) {
+//change state with msg  and pull in map<>
+std::string ViewState::GetState(const Message & msg) {
     switch(msg.msg_type){
         case (Message::REQUEST):
         {
-            _state = Pre_prepare;
+            (*this)._state = Pre_prepare;
+            return "Pre_prepared";
 		}
-		    break;
         case Message::PRE_PREPARE:
         {
-            _state = Prepare;
+            (*this)._state = Prepare;
+            return "Prepared";
 		}
-            break;
         case (Message::PREPARE):
         {
-            _state = Commit;
+            (*this)._state = Commit;
+            return "Committed";
         }
-            break;
         case Message::COMMIT:
         {
-           _state = Reply;
+            (*this)._state = Reply;
+            return "Replyed";
         }
-            break;
-        case (Message::Done):
-        {
-            _state = Reset;
-        }
-            break;
 
     }
 

@@ -18,7 +18,7 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     request.c = request.i = GetNodeAddress();
     request.m = request.str();
     request.d = request.diggest();
-    SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
+    SendMsg(dst, request);//TODO：暂设置IP地址为0的节点是主节点，还未做主节点选拔
 }
 
 void Client::OnRecvMsg(network_address_t src, Message msg) {
@@ -26,34 +26,16 @@ void Client::OnRecvMsg(network_address_t src, Message msg) {
 
 }
 
-void Node::SendPrepare( Message msg)
+void Node::SendPrepare(network_address_t dst, Message msg)
 {
     Message prepare(Message::PREPARE);
-    prepare.t = msg.t;
-    prepare.o = msg.o;
-    prepare.c = msg.c;
-    prepare.i = GetNodeAdd();
-    prepare.m = msg.str();
-    prepare.d = msg.diggest();
-
-
-    for(auto i :_otherNodes)
-        SendMsg(i,prepare);
+    SendMsg(dst,prepare);
 
 }
-void Node::SendCommit( Message msg)
+void Node::SendCommit(network_address_t dst, Message msg)
 {
     Message commit(Message::COMMIT);
-    commit.t = msg.t;
-    commit.o = msg.o;
-    commit.c = msg.c;
-    commit.i = GetNodeAdd();
-    commit.m = msg.str();
-    commit.d = msg.diggest();
-
-
-    for(auto i :_otherNodes)
-        SendMsg(i,commit);
+    SendMsg(dst,commit);
 
 }
 
@@ -74,7 +56,7 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 void Node::OnRecvMsg(network_address_t src, Message msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    ViewState state ;
+    ViewState state;
     state.GetState(msg);
     state.handle_message(msg, *this);
 }
@@ -91,3 +73,17 @@ void Node::SendAll(Message msg) {
 network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
+
+//void Node::Signature(Message & msg,ViewState vs) {
+//    std::stringstream  ss;
+//    ss<<msg.c<<msg.o<<msg.t;
+//    _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
+//}
+//
+//void Node::VerfitySignature( Message msg)
+//{
+//	std::stringstream ss;
+//	ss << Message::v << msg.d << GetNodeAdd() << Message::n;
+//	_log.insert(std::make_pair<int,std::string>((int)src, ss.str()));
+//
+//}
