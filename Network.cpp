@@ -38,6 +38,8 @@ network_address_t Network::AssignAddress() {
     return ++nextAddress;
 }
 
+
+
 network_address_t NetworkNode::GetNodeAddress() const{
     return _nAddress;
 }
@@ -47,7 +49,7 @@ network_address_t NetworkNode::GetNodeAddress() const{
          while (true) {
              try {
                  auto msg = Network::instance().RecvMsg(GetNodeAddress());//查询消息列表里发给自己的消息
-                 OnRecvMsg(msg.src, msg.msg);//client:输出消息内容  Node：输出节点地址、消息，处理消息
+                 OnRecvMsg(msg.src, msg.msg);
              } catch (...) {
                  std::this_thread::sleep_for(1s);
              }

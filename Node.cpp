@@ -11,31 +11,75 @@
 
 
 
+size_t Node::GetSeq() {
+    return _seq++;
+}
+
+size_t Node::GetView() {
+    return _view++;
+}
+
+size_t Node::GetAccCom() const{
+    return accepeted_committed;
+}
+
+size_t Node::GetAccPre() const{
+    return accepeted_prepared;
+}
+
 void Client::SendRequest(network_address_t dst, std::string o) {
     Message request(Message::REQUEST);
     request.t = std::time(nullptr);
     request.o = o;
     request.c = request.i = GetNodeAddress();
-    request.m = request.str();
     request.d = request.diggest();
-    SendMsg(dst, request);//TODO：暂设置IP地址为0的节点是主节点，还未做主节点选拔
+    request.m = request.str();
+    SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 
 void Client::OnRecvMsg(network_address_t src, Message msg) {
-    std::cout<<msg.str()<<std::endl;
+    accepeted_reply++;
+    if(accepeted_reply > 2 * Fault_Node)
+        std::cout<<msg.str()<<std::endl;
 
 }
 
-void Node::SendPrepare(network_address_t dst, Message msg)
+Client::Client() {
+}
+
+
+void Node::SendPrepare( Message msg)
 {
     Message prepare(Message::PREPARE);
-    SendMsg(dst,prepare);
+    prepare.t = msg.t;
+    prepare.o = msg.o;
+    prepare.c = msg.c;
+    prepare.v = msg.v;
+    prepare.n = msg.n;
+    prepare.i = GetNodeAdd();
+    prepare.m = msg.str();
+    prepare.d = msg.diggest();
+
+
+    for(auto i :_otherNodes)
+        SendMsg(i,prepare);
 
 }
-void Node::SendCommit(network_address_t dst, Message msg)
+void Node::SendCommit( Message msg)
 {
     Message commit(Message::COMMIT);
-    SendMsg(dst,commit);
+    commit.t = msg.t;
+    commit.o = msg.o;
+    commit.c = msg.c;
+    commit.v = msg.v;
+    commit.n = msg.n;
+    commit.i = GetNodeAdd();
+    commit.m = msg.str();
+    commit.d = msg.diggest();
+
+
+    for(auto i :_otherNodes)
+        SendMsg(i,commit);
 
 }
 
@@ -56,8 +100,9 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 void Node::OnRecvMsg(network_address_t src, Message msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    ViewState state;
+    ViewState state ;
     state.GetState(msg);
+    LogMessage(msg);
     state.handle_message(msg, *this);
 }
 
@@ -74,16 +119,40 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-//void Node::Signature(Message & msg,ViewState vs) {
-//    std::stringstream  ss;
-//    ss<<msg.c<<msg.o<<msg.t;
-//    _state.insert(std::make_pair<std::string,std::string>(sha256(ss.str()),vs.GetState(msg)));
-//}
-//
-//void Node::VerfitySignature( Message msg)
-//{
-//	std::stringstream ss;
-//	ss << Message::v << msg.d << GetNodeAdd() << Message::n;
-//	_log.insert(std::make_pair<int,std::string>((int)src, ss.str()));
-//
-//}
+void Node::LogMessage(Message msg) {
+    switch (msg.msg_type) {
+        case Message::REQUEST:
+       //     _log.insert(std::map<int,std::string>::value_type(msg.i,"REQUEST"));
+            _log[msg.i] = "REQUEST";
+            break;
+        case Message::PRE_PREPARE:
+          //  _log.insert(std::map<int,std::string>::value_type(msg.i,"PRE_PREPARE"));
+            _log[msg.i] = "PRE_PREPARE";
+            _seq++;
+            break;
+        case Message::PREPARE:
+         //   _log.insert(std::map<int,std::string>::value_type (msg.i,"PREPARE"));
+            _log[msg.i] = "PREPARE";
+            accepeted_prepared++;
+            break;
+        case Message::COMMIT:
+        //    _log.insert(std::map<int,std::string>::value_type(msg.i,"COMMIT"));
+            _log[msg.i] = "COMMIT";
+            accepeted_committed++;
+            break;
+        case Message::DONE:
+           // _log.insert(std::map<int,std::string>::value_type(msg.i,"Done"));
+            _log[msg.i] = "DONE";
+            _view++;
+            accepeted_prepared = 0;
+            accepeted_committed = 0;
+            break;
+        case Message::BAD:
+            _view++;
+            accepeted_prepared = 0;
+            accepeted_committed = 0;
+            break;
+    }
+
+}
+

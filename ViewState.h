@@ -19,9 +19,6 @@ class ViewState
 		Reset
 	}_state;
 
-	static size_t accepeted_prepares;
-	static size_t accepeted_commits;
-
 public:
     ViewState();
 	ViewState(state_t _st);

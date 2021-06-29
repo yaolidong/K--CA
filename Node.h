@@ -17,7 +17,9 @@
 
 //客户端
 class Client : public NetworkNode {
+    size_t accepeted_reply = 0;
 public:
+    Client();
     void OnRecvMsg(network_address_t src,Message msg) override;
     void SendRequest(network_address_t dst, std::string o);
 };
@@ -26,21 +28,27 @@ public:
 //共识节点
 class Node : public NetworkNode {
     std::vector<network_address_t> _otherNodes;
-    struct key_t {
-        network_address_t c;//客户端标识
-        std::string o;//具体操作
-        time_t t;
-    };
-    std::map<std::string, std::string> _state;
-	std::map<network_address_t,std::string> _log;
+    std::map<int ,std::string> _log;
+
     size_t _seq = 0;
     size_t _view = 0;
 
+    size_t accepeted_prepared = 0;
+    size_t accepeted_committed = 0;
+/*    struct key_t {
+        network_address_t c;//客户端标识
+        std::string o;//具体操作
+        time_t t;
+    };*/
 public:
-    void Signature(Message & msg,ViewState vs);
-	void VerfitySignature(Message msg);
     network_address_t  GetNodeAdd();
-	//void SendReply();
+    void SendPrepare(Message msg);
+    void SendCommit(Message msg);
+    size_t GetSeq();
+    size_t GetView();
+    void LogMessage(Message msg);
+    size_t GetAccPre() const;
+    size_t GetAccCom() const;
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
     void OnRecvMsg(network_address_t src, Message msg) override;//检查是否收到过该节点的信息
     void SendAll(Message msg);//转发给所有节点

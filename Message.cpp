@@ -10,8 +10,6 @@
 #include "Message.h"
 
 
-size_t Message::n =1;
-size_t Message::v = 1;
 
 
 Message::Message(msg_type_t _type):msg_type(_type) {
@@ -37,7 +35,7 @@ std::string Message::str() const{
         case COMMIT: ss<<"COMMIT";break;
     }*/
     ss
-        <<", o="<<o
+        <<"o="<<o
         <<", t="<<t
         <<", v="<<v
         <<", n="<<n
