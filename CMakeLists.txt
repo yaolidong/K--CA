@@ -8,18 +8,19 @@ set(CMAKE_BUILD_TYPE Debug)
 include_directories(.)
 
 add_executable(K--CA
-        Blockchain.cpp
+#[[        Blockchain.cpp
         Block.cpp
         Block.h
         Blockchain.h
-        sha256.cpp
-        sha256.h
+
         Translation.h
         Translation.cpp
         Cache.h
         Cache.cpp
         Sealer.h
-        Sealer.cpp
+        Sealer.cpp]]
+        sha256.cpp
+        sha256.h
         ViewState.h
         ViewState.cpp
         Message.h
@@ -30,4 +31,4 @@ add_executable(K--CA
         Node.cpp
         Pbft.h
         Pbft.cpp
-        )
+)
