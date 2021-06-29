@@ -6,9 +6,12 @@
 //______________________________________________________________
 
 #include <sstream>
-#include <ctime>
 #include "sha256.h"
 #include "Message.h"
+
+
+size_t Message::n =1;
+size_t Message::v = 1;
 
 
 Message::Message(msg_type_t _type):msg_type(_type) {
@@ -26,21 +29,20 @@ std::string Message::diggest() {
 //消息内容
 std::string Message::str() const{
     std::stringstream ss;
-    ss<<"Message("<<"msg_type=";
+/*    ss<<"Message("<<"msg_type=";
     switch (msg_type) {
         case REQUEST: ss<<"REQUEST";break;
         case PRE_PREPARE: ss<<"PRE_REQUEST";break;
         case PREPARE: ss<<"PREPARE";break;
         case COMMIT: ss<<"COMMIT";break;
-        case REPLY: ss<<"REPLY";break;
-    }
+    }*/
     ss
         <<", o="<<o
         <<", t="<<t
         <<", v="<<v
-        <<", d="<<d
         <<", n="<<n
         <<", c="<<c
+        <<", d="<<d
         <<")";
     return ss.str();
 }

@@ -11,16 +11,17 @@
 		PRE_PREPARE,
 		PREPARE,
 		COMMIT,
+		Done
 	}msg_type;
 
 	std::string o;//具体操作
 	std::string m;//消息内容
 	time_t t;//客户端请求交易的时间戳
 	static size_t v;//视图编号
-	std::string d;//消息摘要
 	static size_t n;//消息排序
 	network_address_t c = 0;//节点地址 int类型
 	network_address_t i = 0;
+     std::string d;//消息摘要
 
 	explicit Message(msg_type_t _type);
 	std::string diggest();//生成REQUEST消息摘要

@@ -16,15 +16,16 @@ class ViewState
 		Prepare,
 		Commit,
 		Reply,
+		Reset
 	}_state;
 
-	size_t accepeted_prepares = 0;
-	size_t accepeted_commits= 0;
+	static size_t accepeted_prepares;
+	static size_t accepeted_commits;
 
 public:
     ViewState();
 	ViewState(state_t _st);
-    std::string GetState(const Message & msg);
+    void GetState(const Message & msg);
 	void handle_message(Message msg, Node & node);
 
 };

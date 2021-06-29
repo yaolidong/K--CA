@@ -5,26 +5,28 @@
 #include "ViewState.h"
 #include "Node.h"
 
+size_t ViewState::accepeted_commits = 0;
+size_t ViewState::accepeted_prepares = 0;
 
-ViewState::ViewState() :_state(Pre_prepared){}
+ViewState::ViewState() :_state(Pre_prepare){
+}
 ViewState::ViewState(state_t _st):_state(_st){}
 void ViewState::handle_message(Message msg, Node & node) {
 
     switch (_state) {
         case Pre_prepare: {
             msg.msg_type = Message::PRE_PREPARE;
-            Message::n++;
-
-
-			
-            msg.m = msg.str();
-            msg.d = msg.diggest();
+           Message::n++;
+           msg.i = node.GetNodeAdd();
+           msg.m = msg.str();
+           msg.d = msg.diggest();
             node.SendAll(msg);
         }
             break;
         case Prepare: {
             msg.msg_type = Message::PREPARE;
             msg.i = node.GetNodeAdd();
+            node.SendPrepare(msg);
 
 
 
@@ -32,9 +34,11 @@ void ViewState::handle_message(Message msg, Node & node) {
             break;
         case Commit:{
             accepeted_prepares++;
-            node.SendAll(msg);
+            //TODO：如果验证prepare消息正确，则
             msg.msg_type = Message::COMMIT;
-            node.SendAll(msg);
+            node.SendCommit(msg);
+
+
 
         }
             break;
@@ -42,39 +46,56 @@ void ViewState::handle_message(Message msg, Node & node) {
 
         case Reply:
         {
-            Message::v++;
             accepeted_commits++;
-            node.SendMsg(msg.c,msg);
+            if (accepeted_commits > 2 * Num_Node)
+            {
+                msg.msg_type = Message::Done;
+                node.SendMsg(msg.c,msg);
             }
+
+
+        }
             break;
+
+        case Reset:
+        {
+            Message::v++;
+            accepeted_prepares = 0;
+            accepeted_commits = 0;
+        }
+        break;
     }
 
 }
 
 
-//change state with msg  and pull in map<>
-std::string ViewState::GetState(const Message & msg) {
+void ViewState::GetState(const Message & msg) {
     switch(msg.msg_type){
         case (Message::REQUEST):
         {
-            (*this)._state = Pre_prepare;
-            return "Pre_prepared";
+            _state = Pre_prepare;
 		}
+		    break;
         case Message::PRE_PREPARE:
         {
-            (*this)._state = Prepare;
-            return "Prepared";
+            _state = Prepare;
 		}
+            break;
         case (Message::PREPARE):
         {
-            (*this)._state = Commit;
-            return "Committed";
+            _state = Commit;
         }
+            break;
         case Message::COMMIT:
         {
-            (*this)._state = Reply;
-            return "Replyed";
+           _state = Reply;
         }
+            break;
+        case (Message::Done):
+        {
+            _state = Reset;
+        }
+            break;
 
     }
 
