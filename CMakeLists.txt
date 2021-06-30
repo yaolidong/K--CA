@@ -3,7 +3,7 @@ project(K--CA)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_BUILD_TYPE Debug)
+set(Debug)
 
 include_directories(.)
 

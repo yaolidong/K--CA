@@ -1,0 +1,3 @@
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/cmake-build-debug/CMakeFiles/K--CA.dir
