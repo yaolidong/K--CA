@@ -6,7 +6,19 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< HEAD
 /Users/yao/Documents/GitHub/pbft/Message.h
+=======
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
+sstream
+-
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+>>>>>>> parent of 781375d (6.30:10)
 Pbft.h
 /Users/yao/Documents/GitHub/pbft/Pbft.h
 string
