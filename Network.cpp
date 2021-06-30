@@ -9,11 +9,11 @@ Network & Network::instance() {
     return inst;
 }
 bool Network::Empty(){
-    std::lock_guard<std::mutex> guard(_mutex);//互斥锁，保证多线程情况下只有一个在运行。
+    std::lock_guard<std::mutex> guard(_mutex);
     return _messages.empty();
 }
 
-void Network::SendMsg(network_address_t src, network_address_t dst, Message msg) {
+void Network::SendMsg(network_address_t src, network_address_t dst, Message  msg) {
     std::lock_guard<std::mutex> guard(_mutex);
     _messages.push_back({src,dst,msg});
 }

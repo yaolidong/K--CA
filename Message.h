@@ -26,7 +26,7 @@
      std::string m;//消息内容
 
 
-    Message(msg_type_t _type);
+    explicit Message(msg_type_t _type);
 	std::string diggest();//生成REQUEST消息摘要
 	std::string str() const;//生成消息内容
 };
