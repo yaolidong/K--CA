@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
+sstream
+-
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 Pbft.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
