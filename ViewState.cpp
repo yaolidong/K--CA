@@ -32,7 +32,7 @@ void ViewState::handle_message(Message msg, Node & node) {
             break;
         case Commit:{
             //TODO：如果验证prepare消息正确，则
-            if((int )node.GetAccPre() > 2 * Fault_Node)
+            if(node.GetAccPre() > 2 * Fault_Node)
             {
                 msg.msg_type = Message::COMMIT;
                 node.SendCommit(msg);
@@ -43,11 +43,8 @@ void ViewState::handle_message(Message msg, Node & node) {
 
         case Reply:
         {
-            if (node.GetAccCom() > 2 * Fault_Node)
-            {
                 msg.msg_type = Message::DONE;
                 node.SendMsg(msg.c,msg);
-            }
         }
             break;
 
