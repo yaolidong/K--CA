@@ -13,6 +13,8 @@ void ViewState::handle_message(Message msg, Node & node) {
     switch (_state) {
         case Pre_prepare: {
             //TODO：主节点验证客户端请求消息签名是否正确，如果正确，则
+            node.ClearAccPre();
+            node.ClearAccCom();
             msg.msg_type = Message::PRE_PREPARE;
             msg.i = node.GetNodeAdd();
             node.SendAll(msg);
@@ -27,7 +29,6 @@ void ViewState::handle_message(Message msg, Node & node) {
             // d. n是否在区间[h, H]内。
             // 如果正确，则
             msg.msg_type = Message::PREPARE;
-            msg.i = node.GetNodeAdd();
             node.SendPrepare(msg);
             break;
         }
@@ -36,12 +37,13 @@ void ViewState::handle_message(Message msg, Node & node) {
 /*            std::cout<<"Reversed Prepare : "<< node.GetAccPre()<<std::endl;
             std::cout<<"Sender : "<<msg.i<<std::endl;
             std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
-            if(node.GetAccPre() >= 2 * Fault_Node)
+            if((node.GetAccPre() >= 2 * Fault_Node) && (!node.GetHasPrepared()))
             {
-                node.ClearAccPre();
+                node.HasPrepared();
                 //Network::instance().DeleteListMessage(node.GetNodeAdd(),msg.msg_type);
                 msg.msg_type = Message::COMMIT;
                 node.SendCommit(msg);
+
             }
             break;
         }
@@ -53,18 +55,20 @@ void ViewState::handle_message(Message msg, Node & node) {
 /*            std::cout<<"Reversed Commit : "<< node.GetAccCom()<<std::endl;
             std::cout<<"Sender : "<<msg.i<<std::endl;
             std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
-            if(node.GetAccCom() > 2 * Fault_Node  )
+            if((node.GetAccCom() > 2 * Fault_Node) && (!node.GetHasCommit()) )
             {
-                node.ClearAccCom();
+                node.HasCommit();
                 msg.msg_type = Message::DONE;
+                //std::cout <<"Node : " << node.GetNodeAdd() <<std::endl;
+                node.TransToCache(msg);
+                node.SealTrans();
                 node.SendMsg(msg.c,msg);
+                node.ReSetPrepare();
+                node.ReSetCommit();
             }
 
                 break;
         }
-
-        case Reset:
-            break;
 
     }
 
@@ -86,7 +90,6 @@ void ViewState::GetState(const Message & msg) {
            _state = Reply;
             break;
         case (Message::DONE):
-            _state = Reset;
             break;
 
     }

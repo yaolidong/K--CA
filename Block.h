@@ -1,7 +1,6 @@
 #include <cstdint>
 #include <iostream>
 #include <string>
-#include "Sealer.h"
 using namespace std;
 
 //区块索引
@@ -10,8 +9,8 @@ public:
 	string bPrevHash;//上一个区块的哈希值
 	Block(uint32_t bIndexIn, const string & bDataIn,string merkroot);
 	string GetHash();
-	uint32_t GetBIndex() const;
-	void MineBlock(uint32_t mDifficulty);
+	uint32_t GetBIndex();
+	//void MineBlock(uint32_t mDifficulty);
 
 private:
     string merkle_root;//merkle_root
@@ -21,6 +20,6 @@ private:
 	time_t _cTime;//区块生成时间
 
 	string CalculateBlockHash() const;//计算区块哈希值
-    uint32_t _bIndex ;
+    uint32_t _bIndex = 0;
 };
 

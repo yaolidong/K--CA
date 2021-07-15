@@ -6,11 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
-sstream
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
+cstdint
 -
-sha256.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+iostream
+-
+string
+-
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
+vector
+-
+Block.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
+queue
+-
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 
@@ -20,10 +32,6 @@ Pbft.h
 string
 -
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
-Network.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
-
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 list
 -
@@ -31,20 +39,6 @@ thread
 -
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
-
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
-Node.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
-Message.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
-sha256.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
-sstream
--
-string
--
-utility
--
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 vector
@@ -59,6 +53,8 @@ Network.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 Pbft.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
+Sealer.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.cpp
 Node.h
@@ -70,19 +66,15 @@ iostream
 mutex
 -
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp
-ViewState.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
-Node.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
+Cache.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
+Blockchain.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 Node.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
-
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
-string
--
 

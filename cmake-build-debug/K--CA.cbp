@@ -82,6 +82,24 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h">
+			<Option target="K--CA"/>
+		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp">
 			<Option target="K--CA"/>
 		</Unit>
@@ -104,6 +122,12 @@
 			<Option target="K--CA"/>
 		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp">
+			<Option target="K--CA"/>
+		</Unit>
+		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h">
 			<Option target="K--CA"/>
 		</Unit>
 		<Unit filename="/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp">

@@ -24,12 +24,12 @@ string Block::GetHash()
 	return _bHash;
 }
 
-uint32_t Block::GetBIndex() const{
-    return _bIndex;
+uint32_t Block::GetBIndex() {
+    return _bIndex++;
 }
 
-
-void Block::MineBlock(uint32_t mDifficulty)
+//POW
+/*void Block::MineBlock(uint32_t mDifficulty)
 {
 	char cstr[mDifficulty +1];
 	for (uint32_t i = 0; i < mDifficulty; i++)
@@ -50,7 +50,7 @@ void Block::MineBlock(uint32_t mDifficulty)
 
 	cout<<"Block mined: "<<_bHash<<endl;
 
-}
+}*/
 
 inline string Block::CalculateBlockHash() const
 {

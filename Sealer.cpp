@@ -3,7 +3,6 @@
 //
 #include <sstream>
 #include <string>
-#include <iostream>
 #include "Sealer.h"
 #include "sha256.h"
 
@@ -15,26 +14,37 @@ bool Sealer::IsCacheEmpty(Cache & ca) {
     return ca.GetTransQueue().empty();
 }
 
-void Sealer::CalculateMerkRoot(Cache & ca)  {
-    int counter = 0;
-    std::string str;
-    std::queue<Translation>  ref_que = ca.GetTransQueue();
-    while (counter < 400 && !IsCacheEmpty(ca))
+void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
+    if(!IsCacheEmpty(ca))
     {
-            std::stringstream ss;
-//            std::string str = ca.GetTransCache().begin()->GetTHash();
-//            ca.GetTransCache().erase(ca.GetTransCache().begin()+counter);
-            str = ref_que.front().GetTHash();
-            ref_que.pop();
-            std::cout<<ref_que.front().GetTHash()<<std::endl;
-//            std::cout<<"The queue has "<<ref_que.size()<<std::endl;
-            ss << merkle_root << str;
-            merkle_root = sha256(ss.str());
-            counter++;
+        trans_count++;
+        std::stringstream ss;
+        str = ca.GetTransQueue().front().diggest();
+        ca.GetTransQueue().pop();
+        ss << merkle_root << str;
+        merkle_root = sha256(ss.str());
+
+
     }
+
 }
 
-std::string Sealer::GetMerkleRoot() {
-    return merkle_root;
+void Sealer::Upchain(Blockchain & bc) {
+
+        Block bnew = Block(bc.GetBlockIndex(),"",merkle_root);
+        bc.AddBlock(bnew);
+        bc.BlockIndexAdd();
+
 }
+
+size_t Sealer::GetTransCount() {
+    return trans_count;
+}
+
+void Sealer::ReduceCount() {
+    trans_count -= 400;
+
+}
+
+
 

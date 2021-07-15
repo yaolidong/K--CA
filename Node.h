@@ -14,6 +14,7 @@
 #include "ViewState.h"
 #include "Network.h"
 #include "Pbft.h"
+#include "Sealer.h"
 
 //客户端
 class Client : public NetworkNode {
@@ -27,8 +28,14 @@ public:
 
 //共识节点
 class Node : public NetworkNode {
+
+    Cache ca = Cache();
+    Sealer sl = Sealer();
+    Blockchain bChain = Blockchain();
     std::vector<network_address_t> _otherNodes;
     std::map<int ,std::string> _log;
+    bool hasPrepared = false;
+    bool hasCommitted = false;
 
     size_t _seq = 0;
     size_t _view = 0;
@@ -42,14 +49,25 @@ class Node : public NetworkNode {
         time_t t;
     };*/
 public:
+    bool GetHasPrepared() const;
+    bool GetHasCommit() const;
+    bool HasPrepared();
+    bool HasCommit();
+    void ReSetPrepare();
+    void ReSetCommit();
+
+    bool TransQueueEmpty();
+    void TransToCache(Message msg);
+    void SealTrans();
+    //std::queue<Message> GetTransQueue();
     network_address_t  GetNodeAdd();
     void SendPrepare(Message msg);
     void SendCommit(Message msg);
-    size_t GetSeq();
-    size_t GetView();
-    void LogMessage(Message msg);
-    size_t GetAccPre() ;
-    size_t GetAccCom() ;
+    //size_t GetSeq();
+    //size_t GetView();
+    void LogMessage(Message &msg);
+    size_t GetAccPre() const;
+    size_t GetAccCom() const;
     void ClearAccPre();
     void ClearAccCom();
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);

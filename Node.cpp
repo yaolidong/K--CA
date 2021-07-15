@@ -4,26 +4,25 @@
 
 #include "Node.h"
 #include "Message.h"
-#include "sha256.h"
 #include <sstream>
 #include <string>
 #include <utility>
 
 
 
-size_t Node::GetSeq() {
+/*size_t Node::GetSeq() {
     return _seq++;
 }
 
 size_t Node::GetView() {
     return _view++;
-}
+}*/
 
-size_t Node::GetAccCom() {
+size_t Node::GetAccCom() const{
     return accepted_committed;
 }
 
-size_t Node::GetAccPre() {
+size_t Node::GetAccPre() const{
     return accepted_prepared;
 }
 
@@ -43,6 +42,7 @@ void Client::OnRecvMsg(network_address_t src, Message msg) {
     {
         accepeted_reply = 0;
         std::cout << msg.str() << std::endl;
+
     }
 }
 
@@ -128,7 +128,7 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-void Node::LogMessage(Message msg) {
+void Node::LogMessage(Message &msg) {
     switch (msg.msg_type) {
         case Message::REQUEST:
        //     _log.insert(std::map<int,std::string>::value_type(msg.i,"REQUEST"));
@@ -142,6 +142,7 @@ void Node::LogMessage(Message msg) {
         case Message::PREPARE:
          //   _log.insert(std::map<int,std::string>::value_type (msg.i,"PREPARE"));
             _log[msg.i] = "PREPARE";
+            //std::cout<< "Node "<<Node::GetNodeAdd() <<" : "<< accepted_prepared++ <<std::endl;
             accepted_prepared++;
             break;
         case Message::COMMIT:
@@ -152,9 +153,6 @@ void Node::LogMessage(Message msg) {
         case Message::DONE:
            // _log.insert(std::map<int,std::string>::value_type(msg.i,"Done"));
             _log[msg.i] = "DONE";
-            _view++;
-            break;
-        case Message::BAD:
             _view++;
             break;
     }
@@ -168,3 +166,55 @@ void Node::ClearAccCom() {
     accepted_committed = 0;
 }
 
+void Node::TransToCache(Message msg) {
+    std::cout << "Node " <<Node::GetNodeAdd() ;
+    ca.AddTranslation(msg);
+}
+/*std::queue<Message> Node::GetTransQueue() {
+    return ca.GetTransQueue();
+}*/
+
+bool Node::TransQueueEmpty() {
+    return sl.IsCacheEmpty(ca);
+}
+
+void Node::SealTrans() {
+    sl.CalculateMerkRoot(ca,bChain);
+    if(400 == sl.GetTransCount())
+    {
+        sl.Upchain(bChain);
+        sl.ReduceCount();
+        std::cout << "The Node " << Node::GetNodeAdd() << " 添加 " << bChain.GetBlockIndex()
+        << "个区块。 " << std::endl;
+        std::cout << std::endl;
+
+    }
+
+}
+
+bool Node::HasPrepared() {
+    hasPrepared = true;
+    return hasPrepared;
+}
+
+bool Node::HasCommit() {
+    hasCommitted = true;
+    return hasCommitted;
+}
+
+bool Node::GetHasPrepared() const{
+    return hasPrepared;
+}
+
+bool Node::GetHasCommit() const{
+    return hasCommitted;
+}
+
+
+
+void Node::ReSetPrepare() {
+    hasPrepared = false;
+}
+void Node::ReSetCommit() {
+    hasCommitted = false;
+}

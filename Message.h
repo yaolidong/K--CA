@@ -11,9 +11,7 @@
 		PRE_PREPARE,
 		PREPARE,
 		COMMIT,
-		DONE,
-		BAD
-
+		DONE
 	}msg_type;
 
 	std::string o;//具体操作

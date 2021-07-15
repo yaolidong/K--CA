@@ -13,6 +13,7 @@
 
 
 Message::Message(msg_type_t _type):msg_type(_type) {
+
     }
 
 

@@ -15,8 +15,7 @@ class ViewState
         Pre_prepare,
 		Prepare,
 		Commit,
-		Reply,
-		Reset
+		Reply
 	}_state;
 
 

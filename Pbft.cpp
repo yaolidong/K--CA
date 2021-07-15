@@ -9,17 +9,21 @@
 
 //pbft实现
 #include "Node.h"
-#define Max 400
 using std::cout;
 using std::endl;
 
 
-template <class T>
-void measure(T&& func)
+std::mutex console_mutex;
+
+int main()
 {
+
     using namespace std::chrono;
     auto start = system_clock::now();
+
     Client client;
+
+
     //创建节点
     std::vector<std::unique_ptr<Node>> nodes;
     for (int i = 0; i < Num_Node; i++)
@@ -35,26 +39,17 @@ void measure(T&& func)
 
     //客户端发送Request请求
     //cout<<"Send Request"<<endl;
+    for(int i = 0; i < 400; i++)
     client.SendRequest(nodes[0]->GetNodeAddress(),"Translations");
-    //client.SendRequest(nodes[0]->GetNodeAddress(),"Test");
+
     while (!Network::instance().Empty())
         std::this_thread::sleep_for(1s);
+
+
     duration<double> diff = system_clock::now() - start;
-   cout<<"elapsed: " << diff.count() << "seconds" <<endl;
-}
+    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
 
-std::mutex console_mutex;
-
-int main()
-{
-    measure([](){
-
-    });
-
-
-
-
-
+    std::this_thread::sleep_for(5s);
 
 
 	return 0;
