@@ -16,8 +16,9 @@ void ViewState::handle_message(Message msg, Node & node) {
             msg.msg_type = Message::PRE_PREPARE;
             msg.i = node.GetNodeAdd();
             node.SendAll(msg);
-        }
             break;
+        }
+
         case Prepare: {
             //TODO：副本节点验证
             // a. 主节点PRE-PREPARE消息签名是否正确。
@@ -28,24 +29,41 @@ void ViewState::handle_message(Message msg, Node & node) {
             msg.msg_type = Message::PREPARE;
             msg.i = node.GetNodeAdd();
             node.SendPrepare(msg);
-        }
             break;
+        }
         case Commit:{
             //TODO：如果验证prepare消息正确，则
-            if(node.GetAccPre() > 2 * Fault_Node)
+/*            std::cout<<"Reversed Prepare : "<< node.GetAccPre()<<std::endl;
+            std::cout<<"Sender : "<<msg.i<<std::endl;
+            std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
+            if(node.GetAccPre() >= 2 * Fault_Node)
             {
+                node.ClearAccPre();
+                //Network::instance().DeleteListMessage(node.GetNodeAdd(),msg.msg_type);
                 msg.msg_type = Message::COMMIT;
                 node.SendCommit(msg);
             }
-        }
             break;
+        }
+
 
 
         case Reply:
         {
+/*            std::cout<<"Reversed Commit : "<< node.GetAccCom()<<std::endl;
+            std::cout<<"Sender : "<<msg.i<<std::endl;
+            std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
+            if(node.GetAccCom() > 2 * Fault_Node  )
+            {
+                node.ClearAccCom();
                 msg.msg_type = Message::DONE;
                 node.SendMsg(msg.c,msg);
+            }
+
+                break;
         }
+
+        case Reset:
             break;
 
     }
@@ -56,29 +74,19 @@ void ViewState::handle_message(Message msg, Node & node) {
 void ViewState::GetState(const Message & msg) {
     switch(msg.msg_type){
         case (Message::REQUEST):
-        {
             _state = Pre_prepare;
-		}
 		    break;
         case Message::PRE_PREPARE:
-        {
             _state = Prepare;
-		}
             break;
         case (Message::PREPARE):
-        {
             _state = Commit;
-        }
             break;
         case Message::COMMIT:
-        {
            _state = Reply;
-        }
             break;
         case (Message::DONE):
-        {
             _state = Reset;
-        }
             break;
 
     }

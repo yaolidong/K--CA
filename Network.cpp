@@ -38,6 +38,17 @@ network_address_t Network::AssignAddress() {
     return ++nextAddress;
 }
 
+/*void Network::DeleteListMessage(network_address_t dst, Message::msg_type msg) {
+    std::lock_guard<std::mutex> guard(_mutex);
+    for(auto  it = _messages.begin(); it !=_messages.end(); it++)
+    {
+        if(it->dst == dst && it->msg.msg_type == msg.msg_type)
+        {
+            _messages.erase(it);
+        }
+    }
+
+}*/
 
 
 network_address_t NetworkNode::GetNodeAddress() const{

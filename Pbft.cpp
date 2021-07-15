@@ -13,31 +13,45 @@
 using std::cout;
 using std::endl;
 
+
+template <class T>
+void measure(T&& func)
+{
+    using namespace std::chrono;
+    auto start = system_clock::now();
+    Client client;
+    //创建节点
+    std::vector<std::unique_ptr<Node>> nodes;
+    for (int i = 0; i < Num_Node; i++)
+    {
+        nodes.push_back(std::make_unique<Node>());
+    }
+
+    //P2P网络
+    for (auto & node : nodes)
+    {
+        node->SetAllNodes(nodes);
+    }
+
+    //客户端发送Request请求
+    //cout<<"Send Request"<<endl;
+    client.SendRequest(nodes[0]->GetNodeAddress(),"Translations");
+    //client.SendRequest(nodes[0]->GetNodeAddress(),"Test");
+    while (!Network::instance().Empty())
+        std::this_thread::sleep_for(1s);
+    duration<double> diff = system_clock::now() - start;
+   cout<<"elapsed: " << diff.count() << "seconds" <<endl;
+}
+
 std::mutex console_mutex;
 
 int main()
 {
+    measure([](){
+
+    });
 
 
-        Client client;
-        //创建节点
-        std::vector<std::unique_ptr<Node>> nodes;
-        for (int i = 0; i < Num_Node; i++)
-        {
-             nodes.push_back(std::make_unique<Node>());
-        }
-
-        //P2P网络
-        for (auto & node : nodes)
-        {
-            node->SetAllNodes(nodes);
-        }
-
-        //客户端发送Request请求
-        cout<<"Send Request"<<endl;
-        client.SendRequest(nodes[0]->GetNodeAddress(),"Translations");
-        while (!Network::instance().Empty())
-            std::this_thread::sleep_for(1s);
 
 
 

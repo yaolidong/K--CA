@@ -33,8 +33,9 @@ class Node : public NetworkNode {
     size_t _seq = 0;
     size_t _view = 0;
 
-    size_t accepeted_prepared = 0;
-    size_t accepeted_committed = 0;
+    size_t accepted_prepared = 0;
+    size_t accepted_committed = 0;
+
 /*    struct key_t {
         network_address_t c;//客户端标识
         std::string o;//具体操作
@@ -47,8 +48,10 @@ public:
     size_t GetSeq();
     size_t GetView();
     void LogMessage(Message msg);
-    size_t GetAccPre() const;
-    size_t GetAccCom() const;
+    size_t GetAccPre() ;
+    size_t GetAccCom() ;
+    void ClearAccPre();
+    void ClearAccCom();
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
     void OnRecvMsg(network_address_t src, Message msg) override;//检查是否收到过该节点的信息
     void SendAll(Message msg);//转发给所有节点

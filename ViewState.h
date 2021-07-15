@@ -19,6 +19,7 @@ class ViewState
 		Reset
 	}_state;
 
+
 public:
     ViewState();
 	ViewState(state_t _st);

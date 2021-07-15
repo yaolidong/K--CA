@@ -19,12 +19,12 @@ size_t Node::GetView() {
     return _view++;
 }
 
-size_t Node::GetAccCom() const{
-    return accepeted_committed;
+size_t Node::GetAccCom() {
+    return accepted_committed;
 }
 
-size_t Node::GetAccPre() const{
-    return accepeted_prepared;
+size_t Node::GetAccPre() {
+    return accepted_prepared;
 }
 
 void Client::SendRequest(network_address_t dst, std::string o) {
@@ -40,8 +40,10 @@ void Client::SendRequest(network_address_t dst, std::string o) {
 void Client::OnRecvMsg(network_address_t src, Message msg) {
     accepeted_reply++;
     if(accepeted_reply > 2 * Fault_Node)
-        std::cout<<msg.str()<<std::endl;
-
+    {
+        accepeted_reply = 0;
+        std::cout << msg.str() << std::endl;
+    }
 }
 
 Client::Client() {
@@ -57,12 +59,17 @@ void Node::SendPrepare( Message msg)
     prepare.v = msg.v;
     prepare.n = msg.n;
     prepare.i = GetNodeAdd();
-    prepare.m = msg.str();
     prepare.d = msg.diggest();
+    prepare.m = msg.str();
+
 
 
     for(auto i :_otherNodes)
+    {
+        //std::cout<<"Send Prepare for " << Node::GetNodeAdd() <<" to " << i <<std::endl;
         SendMsg(i,prepare);
+    }
+
 
 }
 void Node::SendCommit( Message msg)
@@ -74,8 +81,9 @@ void Node::SendCommit( Message msg)
     commit.v = msg.v;
     commit.n = msg.n;
     commit.i = GetNodeAdd();
-    commit.m = msg.str();
     commit.d = msg.diggest();
+    commit.m = msg.str();
+
 
 
     for(auto i :_otherNodes)
@@ -111,6 +119,7 @@ void Node::SendAll(Message msg) {
 
     for(auto dst : _otherNodes)
     {
+        //std::cout << "Send PrePrepare for " <<Node::GetNodeAdd() << " to " << dst <<std::endl;
         SendMsg(dst,msg);
     }
 }
@@ -133,26 +142,29 @@ void Node::LogMessage(Message msg) {
         case Message::PREPARE:
          //   _log.insert(std::map<int,std::string>::value_type (msg.i,"PREPARE"));
             _log[msg.i] = "PREPARE";
-            accepeted_prepared++;
+            accepted_prepared++;
             break;
         case Message::COMMIT:
         //    _log.insert(std::map<int,std::string>::value_type(msg.i,"COMMIT"));
             _log[msg.i] = "COMMIT";
-            accepeted_committed++;
+            accepted_committed++;
             break;
         case Message::DONE:
            // _log.insert(std::map<int,std::string>::value_type(msg.i,"Done"));
             _log[msg.i] = "DONE";
             _view++;
-            accepeted_prepared = 0;
-            accepeted_committed = 0;
             break;
         case Message::BAD:
             _view++;
-            accepeted_prepared = 0;
-            accepeted_committed = 0;
             break;
     }
 
+}
+void Node::ClearAccPre() {
+    accepted_prepared = 0;
+}
+
+void Node::ClearAccCom() {
+    accepted_committed = 0;
 }
 
