@@ -68,6 +68,6 @@ network_address_t NetworkNode::GetNodeAddress() const{
      }).detach();
  }
 
- void NetworkNode::SendMsg(network_address_t dst, Message msg) {
+ void NetworkNode::SendMsg(network_address_t dst, Message &msg) {
     Network::instance().SendMsg(GetNodeAddress(),dst,msg);
 }

@@ -10,6 +10,9 @@
 #include "Message.h"
 
 
+//size_t Message::n = 0;
+
+
 
 
 Message::Message(msg_type_t _type):msg_type(_type) {

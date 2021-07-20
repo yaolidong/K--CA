@@ -17,6 +17,7 @@ void ViewState::handle_message(Message msg, Node & node) {
             node.ClearAccCom();
             msg.msg_type = Message::PRE_PREPARE;
             msg.i = node.GetNodeAdd();
+            msg.n = node.GetTransNum();
             node.SendAll(msg);
             break;
         }
@@ -37,11 +38,11 @@ void ViewState::handle_message(Message msg, Node & node) {
 /*            std::cout<<"Reversed Prepare : "<< node.GetAccPre()<<std::endl;
             std::cout<<"Sender : "<<msg.i<<std::endl;
             std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
-            if((node.GetAccPre() >= 2 * Fault_Node) && (!node.GetHasPrepared()))
+            if((node.GetAccPre() >= 2 * Fault_Node))
             {
-                node.HasPrepared();
                 //Network::instance().DeleteListMessage(node.GetNodeAdd(),msg.msg_type);
                 msg.msg_type = Message::COMMIT;
+                node.ClearAccPre();
                 node.SendCommit(msg);
 
             }
@@ -55,16 +56,14 @@ void ViewState::handle_message(Message msg, Node & node) {
 /*            std::cout<<"Reversed Commit : "<< node.GetAccCom()<<std::endl;
             std::cout<<"Sender : "<<msg.i<<std::endl;
             std::cout<<"Recipient: "<<node.GetNodeAdd()<<std::endl;*/
-            if((node.GetAccCom() > 2 * Fault_Node) && (!node.GetHasCommit()) )
+            if((node.GetAccCom() > 2 * Fault_Node))
             {
-                node.HasCommit();
+                node.ClearAccCom();
                 msg.msg_type = Message::DONE;
                 //std::cout <<"Node : " << node.GetNodeAdd() <<std::endl;
                 node.TransToCache(msg);
                 node.SealTrans();
                 node.SendMsg(msg.c,msg);
-                node.ReSetPrepare();
-                node.ReSetCommit();
             }
 
                 break;

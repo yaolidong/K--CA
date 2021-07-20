@@ -6,17 +6,7 @@
 #include "Message.h"
 #include <sstream>
 #include <string>
-#include <utility>
 
-
-
-/*size_t Node::GetSeq() {
-    return _seq++;
-}
-
-size_t Node::GetView() {
-    return _view++;
-}*/
 
 size_t Node::GetAccCom() const{
     return accepted_committed;
@@ -24,6 +14,16 @@ size_t Node::GetAccCom() const{
 
 size_t Node::GetAccPre() const{
     return accepted_prepared;
+}
+
+/*void Node::AddTransNum()
+{
+    _seq++;
+}*/
+
+size_t Node::GetTransNum()
+{
+    return _seq++;
 }
 
 void Client::SendRequest(network_address_t dst, std::string o) {
@@ -36,7 +36,7 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 
-void Client::OnRecvMsg(network_address_t src, Message msg) {
+void Client::OnRecvMsg(network_address_t src, Message &msg) {
     accepeted_reply++;
     if(accepeted_reply > 2 * Fault_Node)
     {
@@ -50,7 +50,7 @@ Client::Client() {
 }
 
 
-void Node::SendPrepare( Message msg)
+void Node::SendPrepare( Message &msg)
 {
     Message prepare(Message::PREPARE);
     prepare.t = msg.t;
@@ -72,7 +72,7 @@ void Node::SendPrepare( Message msg)
 
 
 }
-void Node::SendCommit( Message msg)
+void Node::SendCommit( Message &msg)
 {
     Message commit(Message::COMMIT);
     commit.t = msg.t;
@@ -105,17 +105,16 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 
 
 //输出消息发送方和消息内容 获取状态并处理信息
-void Node::OnRecvMsg(network_address_t src, Message msg)
+void Node::OnRecvMsg(network_address_t src, Message &msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
     ViewState state ;
     state.GetState(msg);
-    LogMessage(msg);
     state.handle_message(msg, *this);
 }
 
 //发送给其他所有节点
-void Node::SendAll(Message msg) {
+void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
     {
@@ -128,36 +127,7 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-void Node::LogMessage(Message &msg) {
-    switch (msg.msg_type) {
-        case Message::REQUEST:
-       //     _log.insert(std::map<int,std::string>::value_type(msg.i,"REQUEST"));
-            _log[msg.i] = "REQUEST";
-            break;
-        case Message::PRE_PREPARE:
-          //  _log.insert(std::map<int,std::string>::value_type(msg.i,"PRE_PREPARE"));
-            _log[msg.i] = "PRE_PREPARE";
-            _seq++;
-            break;
-        case Message::PREPARE:
-         //   _log.insert(std::map<int,std::string>::value_type (msg.i,"PREPARE"));
-            _log[msg.i] = "PREPARE";
-            //std::cout<< "Node "<<Node::GetNodeAdd() <<" : "<< accepted_prepared++ <<std::endl;
-            accepted_prepared++;
-            break;
-        case Message::COMMIT:
-        //    _log.insert(std::map<int,std::string>::value_type(msg.i,"COMMIT"));
-            _log[msg.i] = "COMMIT";
-            accepted_committed++;
-            break;
-        case Message::DONE:
-           // _log.insert(std::map<int,std::string>::value_type(msg.i,"Done"));
-            _log[msg.i] = "DONE";
-            _view++;
-            break;
-    }
 
-}
 void Node::ClearAccPre() {
     accepted_prepared = 0;
 }
@@ -166,13 +136,10 @@ void Node::ClearAccCom() {
     accepted_committed = 0;
 }
 
-void Node::TransToCache(Message msg) {
-    std::cout << "Node " <<Node::GetNodeAdd() ;
+void Node::TransToCache(Message &msg) {
+    //std::cout << "Node " <<Node::GetNodeAdd() ;
     ca.AddTranslation(msg);
 }
-/*std::queue<Message> Node::GetTransQueue() {
-    return ca.GetTransQueue();
-}*/
 
 bool Node::TransQueueEmpty() {
     return sl.IsCacheEmpty(ca);
@@ -184,37 +151,43 @@ void Node::SealTrans() {
     {
         sl.Upchain(bChain);
         sl.ReduceCount();
-        std::cout << "The Node " << Node::GetNodeAdd() << " 添加 " << bChain.GetBlockIndex()
-        << "个区块。 " << std::endl;
+        //std::cout << "The Node " << Node::GetNodeAdd() << " 添加 " << bChain.GetBlockIndex()
+        //<< "个区块。 " << std::endl;
         std::cout << std::endl;
 
     }
 
 }
 
-bool Node::HasPrepared() {
-    hasPrepared = true;
-    return hasPrepared;
-}
 
-bool Node::HasCommit() {
-    hasCommitted = true;
-    return hasCommitted;
-}
-
-bool Node::GetHasPrepared() const{
-    return hasPrepared;
-}
-
-bool Node::GetHasCommit() const{
-    return hasCommitted;
+Node::key_t::key_t(Message &msg) {
+    c = msg.c;
+    o = msg.o;
+    t = msg.t;
 }
 
 
 
-void Node::ReSetPrepare() {
-    hasPrepared = false;
+bool Node::key_t::operator<(const Node::key_t &k1) const{
+    if(t < k1.t && c < k1.c)
+        return true;
+    else
+        return false;
 }
-void Node::ReSetCommit() {
-    hasCommitted = false;
+
+Node::key_t::key_t(const key_t &kt) {
+    c = kt.c;
+    o = kt.o;
+    t = kt.t;
+}
+
+Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
+    if(this == &k2)
+        return *this;
+    c = k2.c;
+    o = k2.o;
+    t = k2.t;
+    return *this;
+
+
 }

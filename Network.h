@@ -43,7 +43,7 @@ private:
 public:
     NetworkNode();//将网络地址分配给节点_nAddress
     network_address_t GetNodeAddress() const;//获取节点地址
-    virtual void OnRecvMsg(network_address_t src, Message msg) = 0;//？？查询有没有接收过该发送方信息
-    void SendMsg(network_address_t dst, Message msg);//向消息接收方发送消息
+    virtual void OnRecvMsg(network_address_t src, Message &msg) = 0;//？？查询有没有接收过该发送方信息
+    void SendMsg(network_address_t dst, Message &msg);//向消息接收方发送消息
 };
 #endif //K_CA_NETWORK_H

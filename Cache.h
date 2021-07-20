@@ -11,7 +11,7 @@
 
 class Cache{
 public:
-    Cache();
+//    Cache();
     void AddTranslation (Message & tr);
    // void ShowCacheStore();
 //    std::vector<Translation> GetTransCache();

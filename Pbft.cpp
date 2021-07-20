@@ -39,7 +39,7 @@ int main()
 
     //客户端发送Request请求
     //cout<<"Send Request"<<endl;
-    for(int i = 0; i < 400; i++)
+    for(int i = 0; i < 5; i++)
     client.SendRequest(nodes[0]->GetNodeAddress(),"Translations");
 
     while (!Network::instance().Empty())
