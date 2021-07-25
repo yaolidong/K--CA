@@ -44,12 +44,12 @@ class Node : public NetworkNode {
 
         explicit key_t(Message &msg);
         key_t(const key_t &kt);
-        //bool operator>(const key_t &k1,const key_t &k2) const;
         bool operator<(const key_t &k1) const;
         key_t &operator=(const key_t &k2) ;
     };
 
     std::map<key_t ,ViewState> _log;
+    //std::map<std::string ,ViewState> _log
     size_t _seq = 0;
     size_t _view = 0;
 

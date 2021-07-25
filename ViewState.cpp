@@ -20,7 +20,14 @@ ViewState::ViewState(const ViewState &vt) {
     accepted_prepared = vt.accepted_prepared;
     accepted_committed = vt.accepted_committed;
 }
-
+ViewState & ViewState::operator=(const ViewState &vt) {
+    if (this == &vt)
+        return *this;
+    _state = vt._state;
+    accepted_prepared = vt.accepted_prepared;
+    accepted_committed = vt.accepted_committed;
+    return *this;
+}
 void ViewState::handle_message(Message msg, Node & node) {
     switch (_state) {
         case REQUESTED: {
@@ -29,8 +36,8 @@ void ViewState::handle_message(Message msg, Node & node) {
             msg.i = node.GetNodeAdd();
             msg.n = node.GetTransNum();
             node.SendAll(msg);
-            std::cout << "节点："<< node.GetNodeAdd() << " 接收到请求消息:"
-            << msg.d << std::endl;
+            //std::cout << "节点："<< node.GetNodeAdd() << " 接收到请求消息:"
+            //<< msg.d << std::endl;
             _state = PRE_PREPARED;
             break;
         }
@@ -55,7 +62,7 @@ void ViewState::handle_message(Message msg, Node & node) {
                 std::cout << "节点："<< node.GetNodeAdd() << " 接收到的准备消息:"
                           << msg.d <<"接收到的准备数量："<< accepted_prepared<< std::endl;
             }
-            if (accepted_prepared == 2 )
+            if (accepted_prepared == 2 )//TODO:K_CA
             {
                 _state = PREPARED;
                 std::cout << "节点："<< node.GetNodeAdd() << " 发送提交消息:"
@@ -69,7 +76,7 @@ void ViewState::handle_message(Message msg, Node & node) {
               break;
             else if (msg.msg_type == Message::COMMIT)
                 accepted_committed++;
-            if (accepted_committed == 2 )
+            if (accepted_committed == 2 )//TODO:K_CA
             {
                 _state = COMMITTED;
                 msg.msg_type = Message::REPLY;

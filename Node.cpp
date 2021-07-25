@@ -22,7 +22,7 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     request.d = request.diggest();
     request.m = request.str();
     accepted_reply.insert(pair<std::string ,int>(request.d,0));
-    std::cout << "发送请求消息：" << request.d << std::endl;
+   // std::cout << "发送请求消息：" << request.d << std::endl;
     SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 
@@ -31,15 +31,11 @@ void Client::OnRecvMsg(network_address_t src, Message &msg) {
     for (auto iter = accepted_reply.begin();  iter!= accepted_reply.end() ; iter++) {
         if(iter->first == msg.d)
         {
-            int i  = iter->second;
-            i++;
-            iter->second = i;
+            iter->second++;
         }
     }
-    if(accepted_reply.find(msg.d)->second == 2 )
+    if(accepted_reply.find(msg.d)->second == 2 )//TODO:K_CA
     {
-        int reset = accepted_reply.find(msg.d)->second;
-        accepted_reply.find(msg.d)->second = reset;
         std::cout << msg.str() << std::endl;
     }
 }
@@ -111,6 +107,8 @@ void Node::OnRecvMsg(network_address_t src, Message &msg)
     {
         key_t kt = key_t(msg);
         ViewState vs(msg);
+        //_log.insert(pair<key_t,ViewState>(kt,vs));
+        std::cout << "节点："<<GetNodeAdd()<< " 将"<< msg.d <<"放入log_map里"<<std::endl;
         _log[kt] = vs;
     }
     key_t kt = key_t(msg);
@@ -168,9 +166,17 @@ Node::key_t::key_t(Message &msg) {
 
 
 
-bool Node::key_t::operator<(const Node::key_t &k1) const{
-    if(t < k1.t && c < k1.c && d != k1.d)
+bool Node::key_t::operator<(const Node::key_t &k1) const
+{
+    if(t < k1.t )
         return true;
+//    else if(t == k1.t)
+//    {
+//        if(c < k1.c)
+//            return true;
+//        else
+//            return false;
+//    }
     else
         return false;
 }
@@ -188,9 +194,11 @@ Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
 
 }
 
+
+
 Node::key_t::key_t(const Node::key_t &kt) {
     c = kt.c;
-    o = kt.o;
     t = kt.t;
+    o = kt.o;
     d = kt.d;
 }

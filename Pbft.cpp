@@ -36,7 +36,7 @@ int main()
     }
     std::string str = "Test";
     client.SendRequest(nodes[0]->GetNodeAddress(), "test1");
-    //client.SendRequest(nodes[0]->GetNodeAddress(),"Test2");
+    client.SendRequest(nodes[0]->GetNodeAddress(),"Test2");
 //    client.SendRequest(nodes[0]->GetNodeAddress(),"Test3");
 //    client.SendRequest(nodes[0]->GetNodeAddress(),"Test4");
 //    client.SendRequest(nodes[0]->GetNodeAddress(),"Test5");
