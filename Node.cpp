@@ -6,20 +6,8 @@
 #include "Message.h"
 #include <sstream>
 #include <string>
+#include <utility>
 
-
-size_t Node::GetAccCom() const{
-    return accepted_committed;
-}
-
-size_t Node::GetAccPre() const{
-    return accepted_prepared;
-}
-
-/*void Node::AddTransNum()
-{
-    _seq++;
-}*/
 
 size_t Node::GetTransNum()
 {
@@ -29,20 +17,30 @@ size_t Node::GetTransNum()
 void Client::SendRequest(network_address_t dst, std::string o) {
     Message request(Message::REQUEST);
     request.t = std::time(nullptr);
-    request.o = o;
+    request.o = std::move(o);
     request.c = request.i = GetNodeAddress();
     request.d = request.diggest();
     request.m = request.str();
+    accepted_reply.insert(pair<std::string ,int>(request.d,0));
+    std::cout << "发送请求消息：" << request.d << std::endl;
     SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 
 void Client::OnRecvMsg(network_address_t src, Message &msg) {
-    accepeted_reply++;
-    if(accepeted_reply > 2 * Fault_Node)
-    {
-        accepeted_reply = 0;
-        std::cout << msg.str() << std::endl;
 
+    for (auto iter = accepted_reply.begin();  iter!= accepted_reply.end() ; iter++) {
+        if(iter->first == msg.d)
+        {
+            int i  = iter->second;
+            i++;
+            iter->second = i;
+        }
+    }
+    if(accepted_reply.find(msg.d)->second == 2 )
+    {
+        int reset = accepted_reply.find(msg.d)->second;
+        accepted_reply.find(msg.d)->second = reset;
+        std::cout << msg.str() << std::endl;
     }
 }
 
@@ -59,14 +57,11 @@ void Node::SendPrepare( Message &msg)
     prepare.v = msg.v;
     prepare.n = msg.n;
     prepare.i = GetNodeAdd();
-    prepare.d = msg.diggest();
+    prepare.d = msg.d;
     prepare.m = msg.str();
-
-
 
     for(auto i :_otherNodes)
     {
-        //std::cout<<"Send Prepare for " << Node::GetNodeAdd() <<" to " << i <<std::endl;
         SendMsg(i,prepare);
     }
 
@@ -81,13 +76,15 @@ void Node::SendCommit( Message &msg)
     commit.v = msg.v;
     commit.n = msg.n;
     commit.i = GetNodeAdd();
-    commit.d = msg.diggest();
+    commit.d = msg.d;
     commit.m = msg.str();
 
 
-
     for(auto i :_otherNodes)
+    {
         SendMsg(i,commit);
+    }
+
 
 }
 
@@ -102,15 +99,23 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
     }
 }
 
-
+//void Node::GetState(Message &msg) {
+//
+//}
 
 //输出消息发送方和消息内容 获取状态并处理信息
 void Node::OnRecvMsg(network_address_t src, Message &msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    ViewState state ;
-    state.GetState(msg);
-    state.handle_message(msg, *this);
+    if (msg.msg_type == Message::REQUEST || msg.msg_type == Message::PRE_PREPARE)
+    {
+        key_t kt = key_t(msg);
+        ViewState vs(msg);
+        _log[kt] = vs;
+    }
+    key_t kt = key_t(msg);
+    auto iter = _log.find(kt);
+    iter->second.handle_message(msg, *this);
 }
 
 //发送给其他所有节点
@@ -118,7 +123,6 @@ void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
     {
-        //std::cout << "Send PrePrepare for " <<Node::GetNodeAdd() << " to " << dst <<std::endl;
         SendMsg(dst,msg);
     }
 }
@@ -128,16 +132,8 @@ network_address_t Node::GetNodeAdd() {
 }
 
 
-void Node::ClearAccPre() {
-    accepted_prepared = 0;
-}
-
-void Node::ClearAccCom() {
-    accepted_committed = 0;
-}
-
 void Node::TransToCache(Message &msg) {
-    //std::cout << "Node " <<Node::GetNodeAdd() ;
+    std::cout << "Node " <<Node::GetNodeAdd() << "交易进交易池" <<std::endl;
     ca.AddTranslation(msg);
 }
 
@@ -146,16 +142,19 @@ bool Node::TransQueueEmpty() {
 }
 
 void Node::SealTrans() {
+    std::cout << "Node " <<Node::GetNodeAdd() << "打包交易" <<std::endl;
     sl.CalculateMerkRoot(ca,bChain);
     if(400 == sl.GetTransCount())
     {
         sl.Upchain(bChain);
         sl.ReduceCount();
-        //std::cout << "The Node " << Node::GetNodeAdd() << " 添加 " << bChain.GetBlockIndex()
-        //<< "个区块。 " << std::endl;
-        std::cout << std::endl;
 
     }
+
+}
+
+void Node::SendMessage(network_address_t dst, Message msg) {
+    NetworkNode::SendMsg(dst,msg);
 
 }
 
@@ -164,22 +163,18 @@ Node::key_t::key_t(Message &msg) {
     c = msg.c;
     o = msg.o;
     t = msg.t;
+    d = msg.d;
 }
 
 
 
 bool Node::key_t::operator<(const Node::key_t &k1) const{
-    if(t < k1.t && c < k1.c)
+    if(t < k1.t && c < k1.c && d != k1.d)
         return true;
     else
         return false;
 }
 
-Node::key_t::key_t(const key_t &kt) {
-    c = kt.c;
-    o = kt.o;
-    t = kt.t;
-}
 
 Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
     if(this == &k2)
@@ -187,7 +182,15 @@ Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
     c = k2.c;
     o = k2.o;
     t = k2.t;
+    d = k2.d;
     return *this;
 
 
+}
+
+Node::key_t::key_t(const Node::key_t &kt) {
+    c = kt.c;
+    o = kt.o;
+    t = kt.t;
+    d = kt.d;
 }

@@ -18,12 +18,10 @@ std::mutex console_mutex;
 int main()
 {
 
-    using namespace std::chrono;
-    auto start = system_clock::now();
+//    using namespace std::chrono;
+//    auto start = system_clock::now();
 
     Client client;
-
-
     //创建节点
     std::vector<std::unique_ptr<Node>> nodes;
     for (int i = 0; i < Num_Node; i++)
@@ -36,20 +34,21 @@ int main()
     {
         node->SetAllNodes(nodes);
     }
-
-    //客户端发送Request请求
-    //cout<<"Send Request"<<endl;
-    for(int i = 0; i < 5; i++)
-    client.SendRequest(nodes[0]->GetNodeAddress(),"Translations");
+    std::string str = "Test";
+    client.SendRequest(nodes[0]->GetNodeAddress(), "test1");
+    //client.SendRequest(nodes[0]->GetNodeAddress(),"Test2");
+//    client.SendRequest(nodes[0]->GetNodeAddress(),"Test3");
+//    client.SendRequest(nodes[0]->GetNodeAddress(),"Test4");
+//    client.SendRequest(nodes[0]->GetNodeAddress(),"Test5");
 
     while (!Network::instance().Empty())
         std::this_thread::sleep_for(1s);
 
 
-    duration<double> diff = system_clock::now() - start;
-    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
-
-    std::this_thread::sleep_for(5s);
+//    duration<double> diff = system_clock::now() - start;
+//    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
+//
+//    std::this_thread::sleep_for(5s);
 
 
 	return 0;

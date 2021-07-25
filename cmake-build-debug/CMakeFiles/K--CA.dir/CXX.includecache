@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/yao/Documents/GitHub/K--CA/Block.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 cstdint
 -
 iostream
@@ -14,61 +14,45 @@ iostream
 string
 -
 
-C:/Users/yao/Documents/GitHub/K--CA/Blockchain.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
 vector
 -
 Block.h
-C:/Users/yao/Documents/GitHub/K--CA/Block.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 
-C:/Users/yao/Documents/GitHub/K--CA/Cache.cpp
-Cache.h
-C:/Users/yao/Documents/GitHub/K--CA/Cache.h
-iostream
--
-
-C:/Users/yao/Documents/GitHub/K--CA/Cache.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
 queue
 -
 Message.h
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 
-C:/Users/yao/Documents/GitHub/K--CA/Message.cpp
-sstream
--
-sha256.h
-C:/Users/yao/Documents/GitHub/K--CA/sha256.h
-Message.h
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
-
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 Pbft.h
-C:/Users/yao/Documents/GitHub/K--CA/Pbft.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
 string
 -
 
-C:/Users/yao/Documents/GitHub/K--CA/Network.cpp
-Network.h
-C:/Users/yao/Documents/GitHub/K--CA/Network.h
-
-C:/Users/yao/Documents/GitHub/K--CA/Network.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 list
 -
 thread
 -
 Message.h
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 
-C:/Users/yao/Documents/GitHub/K--CA/Node.cpp
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
 Node.h
-C:/Users/yao/Documents/GitHub/K--CA/Node.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 Message.h
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 sstream
 -
 string
 -
+utility
+-
 
-C:/Users/yao/Documents/GitHub/K--CA/Node.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 vector
 -
 map
@@ -76,53 +60,29 @@ map
 iostream
 -
 ViewState.h
-C:/Users/yao/Documents/GitHub/K--CA/ViewState.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 Network.h
-C:/Users/yao/Documents/GitHub/K--CA/Network.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 Pbft.h
-C:/Users/yao/Documents/GitHub/K--CA/Pbft.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
 Sealer.h
-C:/Users/yao/Documents/GitHub/K--CA/Sealer.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
 
-C:/Users/yao/Documents/GitHub/K--CA/Pbft.cpp
-Node.h
-C:/Users/yao/Documents/GitHub/K--CA/Node.h
-
-C:/Users/yao/Documents/GitHub/K--CA/Pbft.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Pbft.h
 iostream
 -
 mutex
 -
 
-C:/Users/yao/Documents/GitHub/K--CA/Sealer.cpp
-sstream
--
-string
--
-Sealer.h
-C:/Users/yao/Documents/GitHub/K--CA/Sealer.h
-sha256.h
-C:/Users/yao/Documents/GitHub/K--CA/sha256.h
-
-C:/Users/yao/Documents/GitHub/K--CA/Sealer.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
 Cache.h
-C:/Users/yao/Documents/GitHub/K--CA/Cache.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
 Blockchain.h
-C:/Users/yao/Documents/GitHub/K--CA/Blockchain.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
 
-C:/Users/yao/Documents/GitHub/K--CA/ViewState.cpp
-ViewState.h
-C:/Users/yao/Documents/GitHub/K--CA/ViewState.h
-Node.h
-C:/Users/yao/Documents/GitHub/K--CA/Node.h
-
-C:/Users/yao/Documents/GitHub/K--CA/ViewState.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 Message.h
-C:/Users/yao/Documents/GitHub/K--CA/Message.h
-Node.h
-C:/Users/yao/Documents/GitHub/K--CA/Node.h
-
-C:/Users/yao/Documents/GitHub/K--CA/sha256.h
-string
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+map
 -
 

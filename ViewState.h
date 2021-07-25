@@ -2,7 +2,7 @@
 #define K_CA_VIEWSTATE_H
 
 #include "Message.h"
-#include "Node.h"
+#include <map>
 
 
 class Node;
@@ -12,17 +12,20 @@ class ViewState
 
 	enum state_t
 	{
-        Pre_prepare,
-		Prepare,
-		Commit,
-		Reply
+	    REQUESTED,
+        PRE_PREPARED,
+		PREPARED,
+		COMMITTED,
 	}_state;
+
+    size_t accepted_prepared = 0;
+	size_t accepted_committed = 0;
 
 
 public:
     ViewState();
-	ViewState(state_t _st);
-    void GetState(const Message & msg);
+    ViewState(const ViewState& vt);
+    explicit ViewState(const Message& msg);
 	void handle_message(Message msg, Node & node);
 
 };
