@@ -33,7 +33,7 @@ void Client::OnRecvMsg(network_address_t src, Message &msg) {
     }
     if(accepted_reply.find(msg.d)->second == 2 )//TODO:K_CA
     {
-        std::cout << msg.str() << std::endl;
+        //std::cout << msg.str() << std::endl;
     }
 }
 
@@ -130,28 +130,6 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-
-void Node::TransToCache(Message &msg) {
-    std::cout << "Node " <<Node::GetNodeAdd() << "交易进交易池" <<std::endl;
-    ca.AddTranslation(msg);
-}
-
-bool Node::TransQueueEmpty() {
-    return sl.IsCacheEmpty(ca);
-}
-
-void Node::SealTrans() {
-    std::cout << "Node " <<Node::GetNodeAdd() << "打包交易" <<std::endl;
-    sl.CalculateMerkRoot(ca,bChain);
-    if(400 == sl.GetTransCount())
-    {
-        sl.Upchain(bChain);
-        sl.ReduceCount();
-
-    }
-
-}
-
 void Node::SendMessage(network_address_t dst, Message msg) {
     NetworkNode::SendMsg(dst,msg);
 
@@ -213,6 +191,28 @@ Node::key_t::key_t(const Node::key_t &kt) {
 
 Node::key_t::key_t(network_address_t c, std::string o, time_t t, std::string d):c(c),o(std::move(o)),t(t),d(std::move(d)) {
 
+}
+
+
+void Node::TransToCache(Message &msg) {
+    //std::cout << "Node " <<Node::GetNodeAdd() << "交易进交易池" <<std::endl;
+    //std::cout << "交易池交易数量："<< sl.GetTransCount()<< std::endl;
+    ca.AddTranslation(msg);
+}
+
+bool Node::TransQueueEmpty() {
+    return sl.IsCacheEmpty(ca);
+}
+
+void Node::SealTrans() {
+    //std::cout << "Node " <<Node::GetNodeAdd() << "打包交易" <<std::endl;
+    sl.CalculateMerkRoot(ca,bChain);
+    if(400 == sl.GetTransCount())
+    {
+        std::cout << "节点：" << GetNodeAdd() <<" ";
+        sl.Upchain(bChain);
+        sl.ReduceCount();
+    }
 }
 
 

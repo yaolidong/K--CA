@@ -20,24 +20,22 @@ void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
         trans_count++;
         std::stringstream ss;
         str = ca.GetTransQueue().front().diggest();
-        ca.GetTransQueue().pop();
+        ca.PopTransQueue();
         ss << merkle_root << str;
         merkle_root = sha256(ss.str());
-
-
     }
 
 }
 
 void Sealer::Upchain(Blockchain & bc) {
-
-        Block bnew = Block(bc.GetBlockIndex(),"",merkle_root);
-        bc.AddBlock(bnew);
+        std::cout << "添加第" << bc.GetBlockIndex()<< "个区块"<<std::endl;
+        Block bNew = Block(bc.GetBlockIndex(),"",merkle_root);
+        bc.AddBlock(bNew);
         bc.BlockIndexAdd();
 
 }
 
-size_t Sealer::GetTransCount() {
+size_t Sealer::GetTransCount() const{
     return trans_count;
 }
 

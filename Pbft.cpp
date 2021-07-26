@@ -18,8 +18,8 @@ std::mutex console_mutex;
 int main()
 {
 
-//    using namespace std::chrono;
-//    auto start = system_clock::now();
+    using namespace std::chrono;
+    auto start = system_clock::now();
 
     Client client;
     //创建节点
@@ -34,19 +34,22 @@ int main()
     {
         node->SetAllNodes(nodes);
     }
-    client.SendRequest(nodes[0]->GetNodeAddress(), "test1");
-    client.SendRequest(nodes[0]->GetNodeAddress(),"Test2");
-    client.SendRequest(nodes[0]->GetNodeAddress(),"Test3");
-    client.SendRequest(nodes[0]->GetNodeAddress(),"Test4");
-    client.SendRequest(nodes[0]->GetNodeAddress(),"Test5");
+    for(int i = 0; i < 802; i++)
+    {
+        std::string str;
+        str = "Test"+ to_string(i);
+        client.SendRequest(nodes[0]->GetNodeAddress(), str);
+    }
+
+
 
     while (!Network::instance().Empty())
         std::this_thread::sleep_for(1s);
 
 
-//    duration<double> diff = system_clock::now() - start;
-//    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
-//
+    duration<double> diff = system_clock::now() - start;
+    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
+
 //    std::this_thread::sleep_for(5s);
 
 

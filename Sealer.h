@@ -14,12 +14,12 @@ public:
      bool IsCacheEmpty(Cache & ca) ;
     void CalculateMerkRoot(Cache & ca, Blockchain & bc);
     void Upchain(Blockchain & bc);
-    size_t GetTransCount();
+    size_t GetTransCount() const;
     void ReduceCount();
 
 private:
     std::string str;
-    size_t trans_count = 0;
+    size_t trans_count = 1;
     std::string merkle_root;
 };
 #endif //K_CA_SEALER_H

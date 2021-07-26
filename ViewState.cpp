@@ -72,6 +72,8 @@ void ViewState::handle_message(Message msg, Node & node) {
             {
                 _state = COMMITTED;
                 msg.msg_type = Message::REPLY;
+                node.TransToCache(msg);
+                node.SealTrans();
                 node.SendMessage(msg.c,msg);
             }
             break;

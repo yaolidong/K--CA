@@ -10,11 +10,11 @@
 using namespace std;
 
 class Blockchain{
-    size_t _bIndex = 0;
+    size_t _bIndex = 1;
 public:
     Blockchain();
     void AddBlock(Block bNew);
-    size_t GetBlockIndex();
+    size_t GetBlockIndex() const;
     void BlockIndexAdd();
 private:
     //uint32_t _mDifficulty;

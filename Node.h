@@ -49,9 +49,7 @@ class Node : public NetworkNode {
         bool operator<(const key_t &k1) const;
         key_t &operator=(const key_t &k2) ;
     };
-    //bool operator()(const key_t &k1, const key_t &k2);
     std::map<key_t ,ViewState> _log;
-    //std::map<std::string ,ViewState> _log
     size_t _seq = 0;
     size_t _view = 0;
 
