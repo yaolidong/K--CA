@@ -3,10 +3,8 @@
 //
 
 #include "Node.h"
-#include "Message.h"
 #include <sstream>
 #include <string>
-#include <utility>
 
 
 size_t Node::GetTransNum()
@@ -22,7 +20,6 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     request.d = request.diggest();
     request.m = request.str();
     accepted_reply.insert(pair<std::string ,int>(request.d,0));
-   // std::cout << "发送请求消息：" << request.d << std::endl;
     SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 
@@ -105,16 +102,20 @@ void Node::OnRecvMsg(network_address_t src, Message &msg)
     std::lock_guard<std::mutex> console_guard(console_mutex);
     if (msg.msg_type == Message::REQUEST || msg.msg_type == Message::PRE_PREPARE)
     {
-        key_t kt = key_t(msg);
+        key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
         ViewState vs(msg);
-        //_log.insert(pair<key_t,ViewState>(kt,vs));
-        std::cout << "节点："<<GetNodeAdd()<< " 将"<< msg.d <<"放入log_map里"<<std::endl;
         _log[kt] = vs;
+
     }
-    key_t kt = key_t(msg);
+    key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
     auto iter = _log.find(kt);
-    iter->second.handle_message(msg, *this);
+    if (iter ==_log.end())
+        std::cout << "找不到交易信息视图！"<< std::endl;
+    else
+        iter->second.handle_message(msg, *this);
+
 }
+
 
 //发送给其他所有节点
 void Node::SendAll(Message &msg) {
@@ -155,31 +156,43 @@ void Node::SendMessage(network_address_t dst, Message msg) {
     NetworkNode::SendMsg(dst,msg);
 
 }
-
-
 Node::key_t::key_t(Message &msg) {
     c = msg.c;
     o = msg.o;
     t = msg.t;
     d = msg.d;
 }
-
-
-
-bool Node::key_t::operator<(const Node::key_t &k1) const
+ bool Node::key_t::operator<(const Node::key_t &k1) const
 {
-    if(t < k1.t )
+    if(t <k1.t)
         return true;
-//    else if(t == k1.t)
-//    {
-//        if(c < k1.c)
-//            return true;
-//        else
-//            return false;
-//    }
+    else if(t == k1.t)
+    {
+        if (c < k1.c)
+            return true;
+        else if(c == k1.c)
+        {
+            if (t < k1.t)
+                return true;
+            else if (t == k1.t)
+            {
+                if (d < k1.d)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+        else
+            return false;
+    }
     else
         return false;
 }
+
+Node::key_t::key_t():c(0),o("0"),t(0),d("0"){}
+
 
 
 Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
@@ -190,15 +203,17 @@ Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
     t = k2.t;
     d = k2.d;
     return *this;
-
-
 }
-
-
-
 Node::key_t::key_t(const Node::key_t &kt) {
     c = kt.c;
     t = kt.t;
     o = kt.o;
     d = kt.d;
 }
+
+Node::key_t::key_t(network_address_t c, std::string o, time_t t, std::string d):c(c),o(std::move(o)),t(t),d(std::move(d)) {
+
+}
+
+
+

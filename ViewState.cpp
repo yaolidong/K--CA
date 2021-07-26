@@ -36,8 +36,6 @@ void ViewState::handle_message(Message msg, Node & node) {
             msg.i = node.GetNodeAdd();
             msg.n = node.GetTransNum();
             node.SendAll(msg);
-            //std::cout << "节点："<< node.GetNodeAdd() << " 接收到请求消息:"
-            //<< msg.d << std::endl;
             _state = PRE_PREPARED;
             break;
         }
@@ -51,22 +49,16 @@ void ViewState::handle_message(Message msg, Node & node) {
             // 如果正确，则
             if (msg.msg_type == Message::PRE_PREPARE)
             {
-                std::cout << "节点："<< node.GetNodeAdd() << " 发送准备消息:"
-                          << msg.d << std::endl;
                 node.SendPrepare(msg);
             }
             else if(msg.msg_type == Message::PREPARE)
             {
 
                 accepted_prepared++;
-                std::cout << "节点："<< node.GetNodeAdd() << " 接收到的准备消息:"
-                          << msg.d <<"接收到的准备数量："<< accepted_prepared<< std::endl;
             }
             if (accepted_prepared == 2 )//TODO:K_CA
             {
                 _state = PREPARED;
-                std::cout << "节点："<< node.GetNodeAdd() << " 发送提交消息:"
-                          << msg.d << std::endl;
                 node.SendCommit(msg);
             }
             break;
@@ -80,7 +72,6 @@ void ViewState::handle_message(Message msg, Node & node) {
             {
                 _state = COMMITTED;
                 msg.msg_type = Message::REPLY;
-                std::cout << node.GetNodeAdd() << " 发送回复消息："<< msg.d <<std::endl;
                 node.SendMessage(msg.c,msg);
             }
             break;
