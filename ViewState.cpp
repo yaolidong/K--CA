@@ -56,7 +56,7 @@ void ViewState::handle_message(Message msg, Node & node) {
 
                 accepted_prepared++;
             }
-            if (accepted_prepared == 2 )//TODO:K_CA
+            if (accepted_prepared == k_value )//TODO:K_CA
             {
                 _state = PREPARED;
                 node.SendCommit(msg);
@@ -68,12 +68,15 @@ void ViewState::handle_message(Message msg, Node & node) {
               break;
             else if (msg.msg_type == Message::COMMIT)
                 accepted_committed++;
-            if (accepted_committed == 2 )//TODO:K_CA
+            if (accepted_committed == k_value )//TODO:K_CA
             {
                 _state = COMMITTED;
                 msg.msg_type = Message::REPLY;
-                node.TransToCache(msg);
-                node.SealTrans();
+                if(node.GetNodeAdd() == 2 )//TODO:只看单一节点
+                {
+                  node.TransToCache(msg);
+                  node.SealTrans();
+                }
                 node.SendMessage(msg.c,msg);
             }
             break;

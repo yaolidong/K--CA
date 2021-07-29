@@ -29,6 +29,12 @@ void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
 
 void Sealer::Upchain(Blockchain & bc) {
         std::cout << "添加第" << bc.GetBlockIndex()<< "个区块"<<std::endl;
+//        static auto before = std::chrono::system_clock::now();
+//        if (bc.GetBlockIndex() != 1)
+//        {
+//          std::chrono::duration<double > diff = std::chrono::system_clock::now() - before;
+//          std::cout<<"间隔："<< diff.count() <<std::endl;
+//        }
         Block bNew = Block(bc.GetBlockIndex(),"",merkle_root);
         bc.AddBlock(bNew);
         bc.BlockIndexAdd();

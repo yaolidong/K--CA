@@ -1,6 +1,6 @@
 #ifndef K_CA_MESSAGE_H
 #define K_CA_MESSAGE_H
-#include "Pbft.h"
+#include "KCA.h"
 #include <string>
 
  struct Message

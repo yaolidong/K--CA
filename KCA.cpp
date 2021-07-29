@@ -34,7 +34,7 @@ int main()
     {
         node->SetAllNodes(nodes);
     }
-    for(int i = 0; i < 1200; i++)
+    for(int i = 0; i < NUMOFTRANS; i++)
     {
         std::string str;
         str = "Test"+ to_string(i);
@@ -48,7 +48,8 @@ int main()
 
 
     duration<double> diff = system_clock::now() - start;
-    cout<<"elapsed: " << diff.count() << "seconds" <<endl;
+    cout<<"elapsed: " << diff.count()<< " seconds" <<endl;
+  cout<<"TPS: " << (NUMOFTRANS/diff.count())<<endl;
 
 //    std::this_thread::sleep_for(5s);
 

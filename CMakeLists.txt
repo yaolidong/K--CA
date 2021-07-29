@@ -26,6 +26,6 @@ add_executable(K--CA
         Network.cpp
         Node.h
         Node.cpp
-        Pbft.h
-        Pbft.cpp
+        KCA.h
+        KCA.cpp
 )

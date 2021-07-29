@@ -9,12 +9,10 @@
 #include <map>
 #include <iostream>
 
-
-
-#include "ViewState.h"
+#include "KCA.h"
 #include "Network.h"
-#include "Pbft.h"
 #include "Sealer.h"
+#include "ViewState.h"
 
 //客户端
 class Client : public NetworkNode {
