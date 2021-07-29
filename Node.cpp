@@ -31,7 +31,7 @@ void Client::OnRecvMsg(network_address_t src, Message &msg) {
             iter->second++;
         }
     }
-    if(accepted_reply.find(msg.d)->second == 2 )//TODO:K_CA
+    if(accepted_reply.find(msg.d)->second == 2  )//TODO:K_CA
     {
         //std::cout << msg.str() << std::endl;
     }
