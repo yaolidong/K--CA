@@ -77,7 +77,8 @@ void ViewState::handle_message(Message msg, Node & node) {
                   node.TransToCache(msg);
                   node.SealTrans();
                 }
-                node.SendMessage(msg.c,msg);
+
+                //node.SendMessage(msg.c,msg);
             }
             break;
         }

@@ -210,6 +210,7 @@ void Node::SealTrans() {
     if(400 == sl.GetTransCount())
     {
         std::cout << "节点：" << GetNodeAdd() <<" ";
+        //std::cout <<" 初始时间：" << std::chrono::system_clock::now()<<std::endl;
         sl.Upchain(bChain);
         sl.ReduceCount();
     }

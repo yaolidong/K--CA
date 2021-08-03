@@ -18,8 +18,8 @@ std::mutex console_mutex;
 int main()
 {
 
-    using namespace std::chrono;
-    auto start = system_clock::now();
+//    using namespace std::chrono;
+//     auto start = system_clock::now();
 
     Client client;
     //创建节点
@@ -47,9 +47,9 @@ int main()
         std::this_thread::sleep_for(1s);
 
 
-    duration<double> diff = system_clock::now() - start;
-    cout<<"elapsed: " << diff.count()<< " seconds" <<endl;
-  cout<<"TPS: " << (NUMOFTRANS/diff.count())<<endl;
+//    static duration<double> diff = system_clock::now()- start;
+//    cout<<"elapsed: " << diff.count()<< " seconds" <<endl;
+//    cout<<"TPS: " << (NUMOFTRANS/diff.count())<<endl;
 
 //    std::this_thread::sleep_for(5s);
 
