@@ -43,11 +43,17 @@ Client::Client() {
 void Node::SendBlock( Message &msg)
 {
     Message done(Message::DONE);
-
-
+    done.t = msg.t;
+    done.d = msg.d;
+    done.o = msg.o;
+    done.c = msg.c;
+    done.v = msg.v;
+    done.n = msg.n;
+    done.i = GetNodeAdd();
+    done.m = msg.m;
     for(auto i :_otherNodes)
     {
-        std::cout << "Send Block for " << GetNodeAdd() << " To " << i <<std::endl;
+        //std::cout << "Send Block for " << GetNodeAdd() << " To " << i <<std::endl;
         SendMsg(i,done);
     }
 
@@ -70,9 +76,8 @@ void Node::OnRecvMsg(network_address_t src, Message &msg)
     {
         key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
         ViewState vs(msg);
-        std::cout << " 节点：" << GetNodeAdd() << "插入视图 "<< std::endl;
+        //std::cout << " 节点：" << GetNodeAdd() << "插入视图 "<< std::endl;
         _log[kt] = vs;
-
     }
     key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
     auto iter = _log.find(kt);
@@ -89,7 +94,7 @@ void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
     {
-      std::cout << "Send Comfirm for " << GetNodeAdd() << " To " << dst <<std::endl;
+      //std::cout << "Send Comfirm for " << GetNodeAdd() << " To " << dst <<std::endl;
         SendMsg(dst,msg);
     }
 }

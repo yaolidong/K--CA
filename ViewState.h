@@ -12,9 +12,10 @@ class ViewState
 
 	enum state_t
 	{
-	    SENDTRANS,
-            COMFIRMTRANS,
-            SENDBLOCK
+	    SEND_TRANS,
+            COMFIRM_TRANS,
+            WAIT_BLOCK,
+            SEND_BLOCK
 	}_state;
 
       size_t accepted_confirm = 0;

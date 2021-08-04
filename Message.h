@@ -19,10 +19,12 @@
 	size_t v = 0;
 	size_t n = 0;
 	network_address_t i = 0;
-     std::string m;
+        std::string m;
 
 
     explicit Message(msg_type_t _type);
+    Message(const Message & m1);
+    Message operator=(const Message &m1);
 	std::string diggest();
 	std::string str() const;
 };

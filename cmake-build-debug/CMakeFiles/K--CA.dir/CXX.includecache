@@ -20,11 +20,19 @@ vector
 Block.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp
+Cache.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
+
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
 queue
 -
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.cpp
+Node.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
 iostream
@@ -34,11 +42,23 @@ mutex
 math.h
 -
 
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
+sstream
+-
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+Message.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 KCA.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
 string
 -
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
+Network.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 list
@@ -47,6 +67,14 @@ thread
 -
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
+Node.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
+sstream
+-
+string
+-
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 vector
@@ -64,6 +92,16 @@ Sealer.h
 ViewState.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp
+sstream
+-
+string
+-
+Sealer.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
 Cache.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
@@ -80,5 +118,9 @@ Node.h
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 map
+-
+
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
+string
 -
 
