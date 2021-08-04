@@ -22,7 +22,6 @@ void Client::SendRequest(network_address_t dst, std::string o) {
     accepted_reply.insert(pair<std::string ,int>(request.d,0));
     SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
-
 void Client::OnRecvMsg(network_address_t src, Message &msg) {
 
     for (auto iter = accepted_reply.begin();  iter!= accepted_reply.end() ; iter++) {
@@ -41,47 +40,19 @@ Client::Client() {
 }
 
 
-void Node::SendPrepare( Message &msg)
+void Node::SendBlock( Message &msg)
 {
-    Message prepare(Message::PREPARE);
-    prepare.t = msg.t;
-    prepare.o = msg.o;
-    prepare.c = msg.c;
-    prepare.v = msg.v;
-    prepare.n = msg.n;
-    prepare.i = GetNodeAdd();
-    prepare.d = msg.d;
-    prepare.m = msg.str();
-
-    for(auto i :_otherNodes)
-    {
-        SendMsg(i,prepare);
-    }
-
-
-}
-void Node::SendCommit( Message &msg)
-{
-    Message commit(Message::COMMIT);
-    commit.t = msg.t;
-    commit.o = msg.o;
-    commit.c = msg.c;
-    commit.v = msg.v;
-    commit.n = msg.n;
-    commit.i = GetNodeAdd();
-    commit.d = msg.d;
-    commit.m = msg.str();
+    Message done(Message::DONE);
 
 
     for(auto i :_otherNodes)
     {
-        SendMsg(i,commit);
+        std::cout << "Send Block for " << GetNodeAdd() << " To " << i <<std::endl;
+        SendMsg(i,done);
     }
 
 
 }
-
-
 void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
 
     for (auto & node : allNodes) {
@@ -92,36 +63,33 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
     }
 }
 
-//void Node::GetState(Message &msg) {
-//
-//}
-
-//输出消息发送方和消息内容 获取状态并处理信息
 void Node::OnRecvMsg(network_address_t src, Message &msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    if (msg.msg_type == Message::REQUEST || msg.msg_type == Message::PRE_PREPARE)
+    if (msg.msg_type == Message::REQUEST)
     {
         key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
         ViewState vs(msg);
+        std::cout << " 节点：" << GetNodeAdd() << "插入视图 "<< std::endl;
         _log[kt] = vs;
 
     }
     key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
     auto iter = _log.find(kt);
     if (iter ==_log.end())
-        std::cout << "找不到交易信息视图！"<< std::endl;
+        std::cout <<"节点：" <<GetNodeAdd() << "找不到交易信息视图！"<< std::endl;
     else
         iter->second.handle_message(msg, *this);
 
 }
 
 
-//发送给其他所有节点
+
 void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
     {
+      std::cout << "Send Comfirm for " << GetNodeAdd() << " To " << dst <<std::endl;
         SendMsg(dst,msg);
     }
 }
@@ -189,14 +157,12 @@ Node::key_t::key_t(const Node::key_t &kt) {
     d = kt.d;
 }
 
-Node::key_t::key_t(network_address_t c, std::string o, time_t t, std::string d):c(c),o(std::move(o)),t(t),d(std::move(d)) {
+Node::key_t::key_t(network_address_t client, std::string object, time_t time, std::string diggest):c(client),o(std::move(object)),t(time),d(std::move(diggest)) {
 
 }
 
 
 void Node::TransToCache(Message &msg) {
-    //std::cout << "Node " <<Node::GetNodeAdd() << "交易进交易池" <<std::endl;
-    //std::cout << "交易池交易数量："<< sl.GetTransCount()<< std::endl;
     ca.AddTranslation(msg);
 }
 
@@ -205,12 +171,10 @@ bool Node::TransQueueEmpty() {
 }
 
 void Node::SealTrans() {
-    //std::cout << "Node " <<Node::GetNodeAdd() << "打包交易" <<std::endl;
     sl.CalculateMerkRoot(ca,bChain);
     if(400 == sl.GetTransCount())
     {
         std::cout << "节点：" << GetNodeAdd() <<" ";
-        //std::cout <<" 初始时间：" << std::chrono::system_clock::now()<<std::endl;
         sl.Upchain(bChain);
         sl.ReduceCount();
     }

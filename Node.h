@@ -58,9 +58,7 @@ public:
     void TransToCache(Message &msg);
     void SealTrans();
     network_address_t  GetNodeAdd();
-    void SendPrepare(Message &msg);
-    void SendCommit(Message &msg);
-    //void GetState( Message & msg);
+    void SendBlock(Message &msg);
     void SendMessage(network_address_t dst,Message msg);
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
     void OnRecvMsg(network_address_t src, Message &msg) override;//检查是否收到过该节点的信息

@@ -12,14 +12,12 @@ class ViewState
 
 	enum state_t
 	{
-	    REQUESTED,
-        PRE_PREPARED,
-		PREPARED,
-		COMMITTED,
+	    SENDTRANS,
+            COMFIRMTRANS,
+            SENDBLOCK
 	}_state;
 
-    size_t accepted_prepared = 0;
-	size_t accepted_committed = 0;
+      size_t accepted_confirm = 0;
 
 
 public:
