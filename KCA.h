@@ -4,7 +4,7 @@
 #include <iostream>
 #include <mutex>
 #include <math.h>
-#define NUMOFTRANS 8000
+#define NUMOFTRANS 800
 
 
 typedef int network_address_t;

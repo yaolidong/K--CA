@@ -1,6 +1,7 @@
 #ifndef K_CA_MESSAGE_H
 #define K_CA_MESSAGE_H
 #include "KCA.h"
+#include "sha256.h"
 #include <string>
 
  struct Message
@@ -9,7 +10,7 @@
 	{
 		REQUEST,
 		CONFIRM,
-		DONE
+		UNPACK
 	}msg_type;
 
 	std::string o;
@@ -23,8 +24,6 @@
 
 
     explicit Message(msg_type_t _type);
-    Message(const Message & m1);
-    Message operator=(const Message &m1);
 	std::string diggest();
 	std::string str() const;
 };

@@ -8,12 +8,6 @@
 ViewState::ViewState() {
         _state = SEND_TRANS;
 }
-ViewState::ViewState(const Message& msg) {
-    if(msg.msg_type == Message::REQUEST)
-        _state = SEND_TRANS;
-    else if(msg.msg_type == Message::CONFIRM)
-        _state = COMFIRM_TRANS;
-}
 
 ViewState::ViewState(const ViewState &vt) {
     _state = vt._state;
@@ -37,20 +31,18 @@ void ViewState::handle_message(Message msg, Node & node) {
     if (node.GetNodeAdd() == 2)
       _state = COMFIRM_TRANS;
     else {
-      //std::cout << "节点：" << node.GetNodeAdd() << "进入等待状态。"
-                //<< std::endl;
       _state = WAIT_BLOCK;
     }
   }
   break;
-
   case WAIT_BLOCK:
   {
-    if (msg.msg_type == Message::DONE)
+    if (msg.msg_type == Message::UNPACK)
     {
-      //std::cout << "节点：" <<node.GetNodeAdd() << "接收到区块信息。" << std::endl;
-      _state = SEND_BLOCK;
+      //std::cout << "节点：" << node.GetNodeAdd() <<" 添加区块。"<<std::endl;
+      node.GetOutBk();
     }
+
   }
   break;
   case COMFIRM_TRANS: {
@@ -69,23 +61,19 @@ void ViewState::handle_message(Message msg, Node & node) {
         //std::cout << "节点：" << node.GetNodeAdd() << " 达到k确认！"
                   //<< std::endl;
         node.TransToCache(msg);
-        node.SealTrans();
-        //std::cout << "节点：" << node.GetNodeAdd() << "打包区块。" << std::endl;
-        _state = SEND_BLOCK;
-        node.SendBlock(msg);
+        Block bNew = node.SealTrans();
+        if ((msg.n+1)%400 == 0)
+        {
+          node.SendBlock(bNew);
+          node.SendUnpack(msg);
+          _state = SEND_BLOCK;
+        }
+        else
+          _state = WAIT_BLOCK;
     }
   }
   break;
-
-  case SEND_BLOCK: {
-    if (msg.msg_type == Message::CONFIRM)
-    {
-      //std::cout << "节点：" << node.GetNodeAdd() << "已k确认，不再接收确认信息。" << std::endl;
-    }
-    // TODO:复制区块
-    if (msg.msg_type == Message::DONE)
-      std::cout << "节点：" << node.GetNodeAdd() << " 打包区块。" << std::endl;
-    }
+  case SEND_BLOCK:
     break;
   }
 }

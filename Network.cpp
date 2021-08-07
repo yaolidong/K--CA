@@ -18,7 +18,10 @@ void Network::SendMsg(network_address_t src, network_address_t dst, Message msg)
     _messages.push_back({src,dst,msg});
 }
 
-//从msg list里遍历，如果接收方一样，取出msg;
+void Network::SendBlock(network_address_t src, network_address_t dst, Block bk){
+  std::lock_guard<std::mutex> guard(_mutex);
+  _blocks.push_back({src,dst,bk});
+}
 MessageAddressed Network::RecvMsg(network_address_t dst) {
     std::lock_guard<std::mutex> guard(_mutex);
     for (auto it = _messages.begin(); it !=_messages.end(); ++it)
@@ -33,23 +36,26 @@ MessageAddressed Network::RecvMsg(network_address_t dst) {
     throw std::runtime_error("no message for you");
 }
 
+BlockAddressed Network::RecvBlock(network_address_t dst) {
+  std::lock_guard<std::mutex> guard(_mutex);
+  for (auto it = _blocks.begin(); it !=_blocks.end(); ++it)
+  {
+    if(it->dst == dst)
+    {
+      auto bk = *it;
+      _blocks.erase(it);
+      return bk;
+    }
+  }
+  throw std::runtime_error("no block for you");
+}
 network_address_t Network::AssignAddress() {
     std::lock_guard<std::mutex> guard(_mutex);
     return ++nextAddress;
 }
-
-/*void Network::DeleteListMessage(network_address_t dst, Message::msg_type msg) {
-    std::lock_guard<std::mutex> guard(_mutex);
-    for(auto  it = _messages.begin(); it !=_messages.end(); it++)
-    {
-        if(it->dst == dst && it->msg.msg_type == msg.msg_type)
-        {
-            _messages.erase(it);
-        }
-    }
-
-}*/
-
+bool Network::List_Blocks() {
+  return _blocks.empty();
+}
 
 network_address_t NetworkNode::GetNodeAddress() const{
     return _nAddress;
@@ -59,7 +65,7 @@ network_address_t NetworkNode::GetNodeAddress() const{
      std::thread([this]() {
          while (true) {
              try {
-                 auto msg = Network::instance().RecvMsg(GetNodeAddress());//查询消息列表里发给自己的消息
+                 auto msg = Network::instance().RecvMsg(GetNodeAddress());
                  OnRecvMsg(msg.src, msg.msg);
              } catch (...) {
                  std::this_thread::sleep_for(1s);
@@ -70,4 +76,7 @@ network_address_t NetworkNode::GetNodeAddress() const{
 
  void NetworkNode::SendMsg(network_address_t dst, Message msg) {
     Network::instance().SendMsg(GetNodeAddress(),dst,msg);
+}
+void NetworkNode::SendBlock(network_address_t dst, Block bk) {
+  Network::instance().SendBlock(GetNodeAddress(),dst,bk);
 }

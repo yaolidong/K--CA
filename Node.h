@@ -9,7 +9,6 @@
 #include <map>
 #include <iostream>
 
-#include "KCA.h"
 #include "Network.h"
 #include "Sealer.h"
 #include "ViewState.h"
@@ -19,7 +18,8 @@ class Client : public NetworkNode {
     std::map<std::string ,int> accepted_reply;
 public:
     Client();
-    void OnRecvMsg(network_address_t src,Message &msg) override;
+    void OnRecvMsg(network_address_t src,Message msg) override;
+    void OnRecvBk(Block bk) override;
     void SendRequest(network_address_t dst, std::string o);
 };
 
@@ -31,8 +31,6 @@ class Node : public NetworkNode {
     Sealer sl = Sealer();
     Blockchain bChain = Blockchain();
     std::vector<network_address_t> _otherNodes;
-
-
 
     struct key_t {
         network_address_t c;//客户端标识
@@ -54,15 +52,17 @@ class Node : public NetworkNode {
 public:
 
     size_t GetTransNum();
-    bool TransQueueEmpty();
+    Blockchain GetBlockChain();
     void TransToCache(Message &msg);
-    void SealTrans();
+    Block SealTrans();
     network_address_t  GetNodeAdd();
-    void SendBlock(Message &msg);
-    void SendMessage(network_address_t dst,Message msg);
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
-    void OnRecvMsg(network_address_t src, Message &msg) override;//检查是否收到过该节点的信息
-    void SendAll(Message &msg);//转发给所有节点
+    void OnRecvMsg(network_address_t src, Message msg) override;
+    void OnRecvBk(Block bk) override;
+    void GetOutBk();
+    void SendAll(Message &msg);
+    void SendBlock(Block &bk);
+    void SendUnpack(Message &msg);
 
 
 

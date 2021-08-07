@@ -45,14 +45,14 @@ math.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
 sstream
 -
-sha256.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 KCA.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
 string
 -
 
@@ -67,6 +67,8 @@ thread
 -
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+Block.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
 Node.h
@@ -83,8 +85,6 @@ map
 -
 iostream
 -
-KCA.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
 Network.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 Sealer.h

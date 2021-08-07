@@ -12,10 +12,12 @@ Blockchain::Blockchain()
 	_bChain.emplace_back(Block(_bIndex,"Genesis Block", ""));
 }
 
-void Blockchain::AddBlock(Block bNew)
+Block Blockchain::AddBlock(Block bNew)
 {
 	bNew.bPrevHash = GetLastBlock().GetHash();
+        bNew._bHash = bNew.CalculateBlockHash();
 	_bChain.push_back(bNew);
+        return bNew;
 }
 
 Block Blockchain::GetLastBlock() const
