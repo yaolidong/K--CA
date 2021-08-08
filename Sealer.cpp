@@ -29,19 +29,6 @@ void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
 }
 
 Block Sealer::Upchain(Blockchain & bc) {
-        std::cout << "添加第" << bc.GetBlockIndex()<< "个区块"<<std::endl;
-        std::cout << "区块merkle_root:" << merkle_root<<std::endl;
-        static clock_t start;
-        //static clock_t end;
-        if(bc.GetBlockIndex() == 1)
-        {
-          start = clock();
-        }
-        if (bc.GetBlockIndex() == 10)
-        {
-          auto duration = (double )(clock()-start)/CLOCKS_PER_SEC;
-          std::cout<< "TPS: "<< NUMOFTRANS/duration << std::endl;
-        }
         Block bNew = Block(bc.GetBlockIndex(),"",merkle_root);
         bNew = bc.AddBlock(bNew);
         bc.BlockIndexAdd();

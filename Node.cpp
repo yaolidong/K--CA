@@ -12,33 +12,15 @@ size_t Node::GetTransNum()
     return _seq++;
 }
 
-void Client::SendRequest(network_address_t dst, std::string o) {
-    Message request(Message::REQUEST);
-    request.t = std::time(nullptr);
-    request.o = std::move(o);
-    request.c = request.i = GetNodeAddress();
-    request.d = request.diggest();
-    request.m = request.str();
-    accepted_reply.insert(pair<std::string ,int>(request.d,0));
-    SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
+void Client::SendRequest(network_address_t dst, Message & msg) {
+    SendMsg(dst, msg);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
 void Client::OnRecvMsg(network_address_t src, Message msg) {
-/*
-    for (auto iter = accepted_reply.begin();  iter!= accepted_reply.end() ; iter++) {
-        if(iter->first == msg.d)
-        {
-            iter->second++;
-        }
-    }
-    if(accepted_reply.find(msg.d)->second == k_value  )//TODO:K_CA
-    {
-        //std::cout << msg.str() << std::endl;
-    }*/
+
 }
 
 Client::Client() {
 }
-void Client::OnRecvBk(Block bk) {}
 
 Blockchain Node::GetBlockChain() {
   return bChain;
@@ -82,7 +64,6 @@ void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
     {
-      //std::cout << "Send Comfirm for " << GetNodeAdd() << " To " << dst <<std::endl;
         SendMsg(dst,msg);
     }
 }
@@ -157,7 +138,7 @@ Block Node::SealTrans() {
     Block bNew;
     if(400 == sl.GetTransCount())
     {
-        std::cout << "节点：" << GetNodeAdd() <<" ";
+        //std::cout << "节点：" << GetNodeAdd() <<" ";
         bNew = sl.Upchain(bChain);
         sl.ReduceCount();
     }
@@ -166,23 +147,19 @@ Block Node::SealTrans() {
 void Node::SendBlock(Block &bk) {
   for(auto dst : _otherNodes)
   {
-    std::cout << "Send Block for " << GetNodeAdd() << " To " << dst <<std::endl;
     NetworkNode::SendBlock(dst,bk);
   }
 }
-void Node::OnRecvBk(Block bk) {
-  bChain.AddBlock(bk);
-  std::cout << "节点：" << GetNodeAdd() <<" 添加第 " << bk.GetBIndex() << " 个区块。"<<std::endl;
 
-}
 void Node::GetOutBk() {
   BlockAddressed bka;
   if (!Network::instance().List_Blocks())
   {
      bka = Network::instance().RecvBlock(GetNodeAdd());
      bChain.AddBlock(bka.bk);
-    std::cout << "节点：" << GetNodeAdd() <<" 添加第 "<< bka.bk.GetBIndex() <<" 个区块 from "<<bka.src<< std::endl;
-    std::cout << "Merkle_root:" << bka.bk.GetMerkleRoot()<<std::endl;
+     if (GetNodeAdd() == 3)
+      std::cout << "节点：" << GetNodeAdd() <<" 添加第 "<< bka.bk.GetBIndex() <<" 个区块. "<< std::endl;
+    //std::cout << "Merkle_root:" << bka.bk.GetMerkleRoot()<<std::endl;
   }
   else
     std::cout << "区块列表为空！"<<std::endl;

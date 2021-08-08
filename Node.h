@@ -19,8 +19,7 @@ class Client : public NetworkNode {
 public:
     Client();
     void OnRecvMsg(network_address_t src,Message msg) override;
-    void OnRecvBk(Block bk) override;
-    void SendRequest(network_address_t dst, std::string o);
+    void SendRequest(network_address_t dst,Message &msg);
 };
 
 
@@ -58,7 +57,6 @@ public:
     network_address_t  GetNodeAdd();
     void SetAllNodes(const std::vector<std::unique_ptr<Node>> & allNodes);
     void OnRecvMsg(network_address_t src, Message msg) override;
-    void OnRecvBk(Block bk) override;
     void GetOutBk();
     void SendAll(Message &msg);
     void SendBlock(Block &bk);

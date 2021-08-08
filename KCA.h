@@ -4,12 +4,12 @@
 #include <iostream>
 #include <mutex>
 #include <math.h>
-#define NUMOFTRANS 800
+#define NUMOFTRANS 12000
 
 
 typedef int network_address_t;
 
-static constexpr int Fault_Node =1;
+static constexpr int Fault_Node =3;
 static constexpr int Num_Node = 3 * Fault_Node + 1;
 const int k_value = 2;
 

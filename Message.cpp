@@ -23,4 +23,25 @@ std::string Message::str() const{
         <<")";
     return ss.str();
 }
+Message::Message(const Message &msg) {
+  msg_type = msg.msg_type;
+  t = msg.t;
+  c = msg.c;
+  o = msg.o;
+  d = msg.d;
+  v = msg.v;
+  n = msg.n;
+}
+Message &Message::operator=(const Message &msg) {
+  if (this == & msg)
+    return *this;
+  msg_type = msg.msg_type;
+  t = msg.t;
+  c = msg.c;
+  o = msg.o;
+  d = msg.d;
+  v = msg.v;
+  n = msg.n;
+  return  *this;
 
+}

@@ -23,7 +23,9 @@
         std::string m;
 
 
-    explicit Message(msg_type_t _type);
+        explicit Message(msg_type_t _type);
+        Message(const Message & msg);
+        Message & operator=(const Message & msg);
 	std::string diggest();
 	std::string str() const;
 };

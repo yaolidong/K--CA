@@ -54,7 +54,6 @@ public:
     NetworkNode();
     network_address_t GetNodeAddress() const;
     virtual void OnRecvMsg(network_address_t src, Message msg) = 0;
-    virtual void OnRecvBk( Block bk) = 0;
     void SendMsg(network_address_t dst, Message msg);
     void SendBlock(network_address_t dst, Block bk);
 };
