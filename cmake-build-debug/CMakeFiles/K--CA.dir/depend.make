@@ -13,6 +13,7 @@ CMakeFiles/K--CA.dir/Cache.cpp.o: ../Cache.cpp
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../Cache.h
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../KCA.h
 CMakeFiles/K--CA.dir/Cache.cpp.o: ../Message.h
+CMakeFiles/K--CA.dir/Cache.cpp.o: ../sha256.h
 
 CMakeFiles/K--CA.dir/KCA.cpp.o: ../Block.h
 CMakeFiles/K--CA.dir/KCA.cpp.o: ../Blockchain.h
@@ -24,16 +25,19 @@ CMakeFiles/K--CA.dir/KCA.cpp.o: ../Network.h
 CMakeFiles/K--CA.dir/KCA.cpp.o: ../Node.h
 CMakeFiles/K--CA.dir/KCA.cpp.o: ../Sealer.h
 CMakeFiles/K--CA.dir/KCA.cpp.o: ../ViewState.h
+CMakeFiles/K--CA.dir/KCA.cpp.o: ../sha256.h
 
 CMakeFiles/K--CA.dir/Message.cpp.o: ../KCA.h
 CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.cpp
 CMakeFiles/K--CA.dir/Message.cpp.o: ../Message.h
 CMakeFiles/K--CA.dir/Message.cpp.o: ../sha256.h
 
+CMakeFiles/K--CA.dir/Network.cpp.o: ../Block.h
 CMakeFiles/K--CA.dir/Network.cpp.o: ../KCA.h
 CMakeFiles/K--CA.dir/Network.cpp.o: ../Message.h
 CMakeFiles/K--CA.dir/Network.cpp.o: ../Network.cpp
 CMakeFiles/K--CA.dir/Network.cpp.o: ../Network.h
+CMakeFiles/K--CA.dir/Network.cpp.o: ../sha256.h
 
 CMakeFiles/K--CA.dir/Node.cpp.o: ../Block.h
 CMakeFiles/K--CA.dir/Node.cpp.o: ../Blockchain.h
@@ -45,6 +49,7 @@ CMakeFiles/K--CA.dir/Node.cpp.o: ../Node.cpp
 CMakeFiles/K--CA.dir/Node.cpp.o: ../Node.h
 CMakeFiles/K--CA.dir/Node.cpp.o: ../Sealer.h
 CMakeFiles/K--CA.dir/Node.cpp.o: ../ViewState.h
+CMakeFiles/K--CA.dir/Node.cpp.o: ../sha256.h
 
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Block.h
 CMakeFiles/K--CA.dir/Sealer.cpp.o: ../Blockchain.h
@@ -65,6 +70,7 @@ CMakeFiles/K--CA.dir/ViewState.cpp.o: ../Node.h
 CMakeFiles/K--CA.dir/ViewState.cpp.o: ../Sealer.h
 CMakeFiles/K--CA.dir/ViewState.cpp.o: ../ViewState.cpp
 CMakeFiles/K--CA.dir/ViewState.cpp.o: ../ViewState.h
+CMakeFiles/K--CA.dir/ViewState.cpp.o: ../sha256.h
 
 CMakeFiles/K--CA.dir/sha256.cpp.o: ../sha256.cpp
 CMakeFiles/K--CA.dir/sha256.cpp.o: ../sha256.h

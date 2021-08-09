@@ -12,73 +12,18 @@ size_t Node::GetTransNum()
     return _seq++;
 }
 
-void Client::SendRequest(network_address_t dst, std::string o) {
-    Message request(Message::REQUEST);
-    request.t = std::time(nullptr);
-    request.o = std::move(o);
-    request.c = request.i = GetNodeAddress();
-    request.d = request.diggest();
-    request.m = request.str();
-    accepted_reply.insert(pair<std::string ,int>(request.d,0));
-    SendMsg(dst, request);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
+void Client::SendRequest(network_address_t dst, Message & msg) {
+    SendMsg(dst, msg);//TODO：暂设置地址为2的节点是主节点，还未做主节点选拔
 }
+void Client::OnRecvMsg(network_address_t src, Message msg) {
 
-void Client::OnRecvMsg(network_address_t src, Message &msg) {
-
-    for (auto iter = accepted_reply.begin();  iter!= accepted_reply.end() ; iter++) {
-        if(iter->first == msg.d)
-        {
-            iter->second++;
-        }
-    }
-    if(accepted_reply.find(msg.d)->second == k_value  )//TODO:K_CA
-    {
-        //std::cout << msg.str() << std::endl;
-    }
 }
 
 Client::Client() {
 }
 
-
-void Node::SendPrepare( Message &msg)
-{
-    Message prepare(Message::PREPARE);
-    prepare.t = msg.t;
-    prepare.o = msg.o;
-    prepare.c = msg.c;
-    prepare.v = msg.v;
-    prepare.n = msg.n;
-    prepare.i = GetNodeAdd();
-    prepare.d = msg.d;
-    prepare.m = msg.str();
-
-    for(auto i :_otherNodes)
-    {
-        SendMsg(i,prepare);
-    }
-
-
-}
-void Node::SendCommit( Message &msg)
-{
-    Message commit(Message::COMMIT);
-    commit.t = msg.t;
-    commit.o = msg.o;
-    commit.c = msg.c;
-    commit.v = msg.v;
-    commit.n = msg.n;
-    commit.i = GetNodeAdd();
-    commit.d = msg.d;
-    commit.m = msg.str();
-
-
-    for(auto i :_otherNodes)
-    {
-        SendMsg(i,commit);
-    }
-
-
+Blockchain Node::GetBlockChain() {
+  return bChain;
 }
 
 
@@ -92,32 +37,29 @@ void Node::SetAllNodes(const std::vector<std::unique_ptr<Node>> &allNodes) {
     }
 }
 
-//void Node::GetState(Message &msg) {
-//
-//}
-
-//输出消息发送方和消息内容 获取状态并处理信息
-void Node::OnRecvMsg(network_address_t src, Message &msg)
+void Node::OnRecvMsg(network_address_t src, Message msg)
 {
     std::lock_guard<std::mutex> console_guard(console_mutex);
-    if (msg.msg_type == Message::REQUEST || msg.msg_type == Message::PRE_PREPARE)
-    {
-        key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
-        ViewState vs(msg);
-        _log[kt] = vs;
-
-    }
     key_t kt = key_t(msg.c,msg.o,msg.t,msg.d);
+
+    if (msg.msg_type == Message::REQUEST)
+    {
+        ViewState vs = ViewState();
+        _log[kt] = vs;
+    }
+
     auto iter = _log.find(kt);
     if (iter ==_log.end())
-        std::cout << "找不到交易信息视图！"<< std::endl;
+    {
+      std::cout <<"节点：" <<GetNodeAdd() << "找不到交易信息视图！"<< std::endl;
+    }
     else
-        iter->second.handle_message(msg, *this);
+      iter->second.handle_message(msg, *this);
+  }
 
-}
 
 
-//发送给其他所有节点
+
 void Node::SendAll(Message &msg) {
 
     for(auto dst : _otherNodes)
@@ -130,10 +72,7 @@ network_address_t Node::GetNodeAdd() {
     return NetworkNode::GetNodeAddress();
 }
 
-void Node::SendMessage(network_address_t dst, Message msg) {
-    NetworkNode::SendMsg(dst,msg);
 
-}
 Node::key_t::key_t(Message &msg) {
     c = msg.c;
     o = msg.o;
@@ -142,13 +81,13 @@ Node::key_t::key_t(Message &msg) {
 }
  bool Node::key_t::operator<(const Node::key_t &k1) const
 {
-    if(t <k1.t)
+    if(c <k1.c)
         return true;
-    else if(t == k1.t)
+    else if(c == k1.c)
     {
-        if (c < k1.c)
+        if (o < k1.o)
             return true;
-        else if(c == k1.c)
+        else if(o == k1.o)
         {
             if (t < k1.t)
                 return true;
@@ -168,11 +107,6 @@ Node::key_t::key_t(Message &msg) {
     else
         return false;
 }
-
-Node::key_t::key_t():c(0),o("0"),t(0),d("0"){}
-
-
-
 Node::key_t &Node::key_t::operator=(const Node::key_t &k2) {
     if(this == &k2)
         return *this;
@@ -189,32 +123,55 @@ Node::key_t::key_t(const Node::key_t &kt) {
     d = kt.d;
 }
 
-Node::key_t::key_t(network_address_t c, std::string o, time_t t, std::string d):c(c),o(std::move(o)),t(t),d(std::move(d)) {
+Node::key_t::key_t(network_address_t client, std::string object, time_t time, std::string diggest):c(client),o(std::move(object)),t(time),d(std::move(diggest)) {
 
 }
+Node::key_t::key_t():c(0),o("0"),t(0),d("0"){}
 
 
 void Node::TransToCache(Message &msg) {
-    //std::cout << "Node " <<Node::GetNodeAdd() << "交易进交易池" <<std::endl;
-    //std::cout << "交易池交易数量："<< sl.GetTransCount()<< std::endl;
     ca.AddTranslation(msg);
 }
 
-bool Node::TransQueueEmpty() {
-    return sl.IsCacheEmpty(ca);
-}
-
-void Node::SealTrans() {
-    //std::cout << "Node " <<Node::GetNodeAdd() << "打包交易" <<std::endl;
+Block Node::SealTrans() {
     sl.CalculateMerkRoot(ca,bChain);
+    Block bNew;
     if(400 == sl.GetTransCount())
     {
-        std::cout << "节点：" << GetNodeAdd() <<" ";
-        //std::cout <<" 初始时间：" << std::chrono::system_clock::now()<<std::endl;
-        sl.Upchain(bChain);
+        //std::cout << "节点：" << GetNodeAdd() <<" ";
+        bNew = sl.Upchain(bChain);
         sl.ReduceCount();
     }
+    return bNew;
+}
+void Node::SendBlock(Block &bk) {
+  for(auto dst : _otherNodes)
+  {
+    NetworkNode::SendBlock(dst,bk);
+  }
 }
 
-
-
+void Node::GetOutBk() {
+  BlockAddressed bka;
+  if (!Network::instance().List_Blocks())
+  {
+     bka = Network::instance().RecvBlock(GetNodeAdd());
+     bChain.AddBlock(bka.bk);
+     if (GetNodeAdd() == 3)
+      std::cout << "节点：" << GetNodeAdd() <<" 添加第 "<< bka.bk.GetBIndex() <<" 个区块. "<< std::endl;
+    //std::cout << "Merkle_root:" << bka.bk.GetMerkleRoot()<<std::endl;
+  }
+  else
+    std::cout << "区块列表为空！"<<std::endl;
+}
+void Node::SendUnpack(Message &msg) {
+  Message unpack(Message::UNPACK);
+  unpack.t = msg.t;
+  unpack.o = msg.o;
+  unpack.i = GetNodeAddress();
+  unpack.d = msg.d;
+  unpack.v = msg.v;
+  unpack.c = msg.c;
+  unpack.m = msg.m;
+  SendAll(unpack);
+}

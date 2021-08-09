@@ -1,6 +1,7 @@
 #ifndef K_CA_MESSAGE_H
 #define K_CA_MESSAGE_H
 #include "KCA.h"
+#include "sha256.h"
 #include <string>
 
  struct Message
@@ -8,24 +9,24 @@
 	enum msg_type_t
 	{
 		REQUEST,
-		PRE_PREPARE,
-		PREPARE,
-		COMMIT,
-		REPLY
+		CONFIRM,
+		UNPACK
 	}msg_type;
 
-	std::string o;//具体操作
-	time_t t;//客户端请求交易的时间戳
-	network_address_t c = 0;//节点地址 int类型
-	std::string d;//消息摘要
-	size_t v = 0;//视图编号
-	size_t n = 0;//消息排序
+	std::string o;
+	time_t t;
+	network_address_t c = 0;
+	std::string d;
+	size_t v = 0;
+	size_t n = 0;
 	network_address_t i = 0;
-     std::string m;//消息内容
+        std::string m;
 
 
-    explicit Message(msg_type_t _type);
-	std::string diggest();//生成REQUEST消息摘要
-	std::string str() const;//生成消息内容
+        explicit Message(msg_type_t _type);
+        Message(const Message & msg);
+        Message & operator=(const Message & msg);
+	std::string diggest();
+	std::string str() const;
 };
 #endif

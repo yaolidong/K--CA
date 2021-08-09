@@ -1,13 +1,3 @@
-//______________________________________________________________
-//_            File  Name   : pbft.cpp
-//_            Author       : Yaolidong
-//_            My   email   :yao401405972@gmail.com
-//_            Created Time :Fri 16 Apr 2021 11:55:54 AM CST
-//______________________________________________________________
-
-
-
-//pbft实现
 #include "Node.h"
 using std::cout;
 using std::endl;
@@ -17,19 +7,16 @@ std::mutex console_mutex;
 
 int main()
 {
-
-//    using namespace std::chrono;
-//     auto start = system_clock::now();
+    using namespace std::chrono;
+    auto start = system_clock::now();
 
     Client client;
-    //创建节点
     std::vector<std::unique_ptr<Node>> nodes;
     for (int i = 0; i < Num_Node; i++)
     {
         nodes.push_back(std::make_unique<Node>());
     }
 
-    //P2P网络
     for (auto & node : nodes)
     {
         node->SetAllNodes(nodes);
@@ -38,21 +25,23 @@ int main()
     {
         std::string str;
         str = "Test"+ to_string(i);
-        client.SendRequest(nodes[0]->GetNodeAddress(), str);
+        Message request(Message::REQUEST);
+        request.t = std::time(nullptr);
+        request.o = str;
+        request.c = request.i = client.GetNodeAddress();
+        request.d = request.diggest();
+        request.m = request.str();
+        for(int j = 0; j < Num_Node; j++)
+        {
+          client.SendRequest(nodes[j]->GetNodeAddress(),request);
+        }
     }
-
-
-
     while (!Network::instance().Empty())
         std::this_thread::sleep_for(1s);
 
-
-//    static duration<double> diff = system_clock::now()- start;
-//    cout<<"elapsed: " << diff.count()<< " seconds" <<endl;
-//    cout<<"TPS: " << (NUMOFTRANS/diff.count())<<endl;
-
-//    std::this_thread::sleep_for(5s);
-
+    duration<double> diff = system_clock::now() - start;
+    cout<<"elapsed: " << diff.count() << " seconds" <<endl;
+    cout<<"TPS: " << NUMOFTRANS/diff.count()<<endl;
 
 	return 0;
 }

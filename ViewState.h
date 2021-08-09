@@ -12,14 +12,13 @@ class ViewState
 
 	enum state_t
 	{
-	    REQUESTED,
-        PRE_PREPARED,
-		PREPARED,
-		COMMITTED,
+	    SEND_TRANS,
+            COMFIRM_TRANS,
+            WAIT_BLOCK,
+            SEND_BLOCK
 	}_state;
 
-    size_t accepted_prepared = 0;
-	size_t accepted_committed = 0;
+      size_t accepted_confirm = 0;
 
 
 public:
@@ -27,9 +26,6 @@ public:
     ViewState(const ViewState& vt);
     ViewState & operator = (const ViewState& vt);
     explicit ViewState(const Message& msg);
-	void handle_message(Message msg, Node & node);
-
+    void handle_message(Message msg, Node & node);
 };
-
-
 #endif

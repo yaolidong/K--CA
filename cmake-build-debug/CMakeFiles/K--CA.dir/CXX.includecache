@@ -20,10 +20,6 @@ vector
 Block.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.cpp
-Cache.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
-
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
 queue
 -
@@ -42,23 +38,13 @@ mutex
 math.h
 -
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.cpp
-sstream
--
-sha256.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
-Message.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
-
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
 KCA.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
+sha256.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
 string
 -
-
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.cpp
-Network.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 list
@@ -67,6 +53,8 @@ thread
 -
 Message.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Message.h
+Block.h
+/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Block.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.cpp
 Node.h
@@ -83,8 +71,6 @@ map
 -
 iostream
 -
-KCA.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/KCA.h
 Network.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Network.h
 Sealer.h
@@ -92,27 +78,11 @@ Sealer.h
 ViewState.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.cpp
-sstream
--
-string
--
-Sealer.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
-sha256.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/sha256.h
-
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Sealer.h
 Cache.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Cache.h
 Blockchain.h
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Blockchain.h
-
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.cpp
-ViewState.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
-Node.h
-/Users/yao/Documents/GitHub/desktop-tutorial/K--CA/Node.h
 
 /Users/yao/Documents/GitHub/desktop-tutorial/K--CA/ViewState.h
 Message.h

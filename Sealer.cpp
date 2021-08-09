@@ -18,6 +18,7 @@ void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
     if(!IsCacheEmpty(ca))
     {
         trans_count++;
+        //std::cout << "交易池中的交易数："<<trans_count << std::endl;
         std::stringstream ss;
         str = ca.GetTransQueue().front().diggest();
         ca.PopTransQueue();
@@ -27,23 +28,11 @@ void  Sealer::CalculateMerkRoot(Cache & ca,Blockchain & bc)  {
 
 }
 
-void Sealer::Upchain(Blockchain & bc) {
-        std::cout << "添加第" << bc.GetBlockIndex()<< "个区块"<<std::endl;
-        static clock_t start;
-        //static clock_t end;
-        if(bc.GetBlockIndex() == 1)
-        {
-          start = clock();
-        }
-        if (bc.GetBlockIndex() == 20)
-        {
-          auto duration = (double )(clock()-start)/CLOCKS_PER_SEC;
-          std::cout<< "TPS: "<< (NUMOFTRANS/duration) * Num_Node<< std::endl;
-        }
+Block Sealer::Upchain(Blockchain & bc) {
         Block bNew = Block(bc.GetBlockIndex(),"",merkle_root);
-        bc.AddBlock(bNew);
+        bNew = bc.AddBlock(bNew);
         bc.BlockIndexAdd();
-
+        return bNew;
 }
 
 size_t Sealer::GetTransCount() const{
